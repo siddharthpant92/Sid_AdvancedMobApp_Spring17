@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="isB-cH-F9V">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Open App-->
+        <scene sceneID="I4R-3h-yRR">
+            <objects>
+                <viewController id="Zky-bw-INh" customClass="openApplicationViewController" customModule="lab1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d8p-Gg-hpi"/>
+                        <viewControllerLayoutGuide type="bottom" id="UUF-de-OG7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="a28-Wn-lF6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click the button below" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGm-iO-pxc">
+                                <rect key="frame" x="74" y="60" width="172" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Og1-kt-9ZO">
+                                <rect key="frame" x="74" y="112" width="172" height="30"/>
+                                <color key="backgroundColor" red="0.26941841439999997" green="0.64176127569999997" blue="0.90364583330000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Open the App Store">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="openAppStoreTapped:" destination="Zky-bw-INh" eventType="touchUpInside" id="Nwy-2N-jq0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.84069188564905351" blue="0.38779979324844938" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Og1-kt-9ZO" firstAttribute="centerX" secondItem="lGm-iO-pxc" secondAttribute="centerX" id="Jvi-fY-dS0"/>
+                            <constraint firstItem="lGm-iO-pxc" firstAttribute="top" secondItem="d8p-Gg-hpi" secondAttribute="bottom" constant="40" id="NCD-57-lqv"/>
+                            <constraint firstItem="Og1-kt-9ZO" firstAttribute="leading" secondItem="lGm-iO-pxc" secondAttribute="trailing" constant="-172" id="YNL-oe-jIA"/>
+                            <constraint firstItem="Og1-kt-9ZO" firstAttribute="top" secondItem="lGm-iO-pxc" secondAttribute="bottom" constant="31" id="sKc-4o-B2a"/>
+                            <constraint firstItem="lGm-iO-pxc" firstAttribute="centerX" secondItem="a28-Wn-lF6" secondAttribute="centerX" id="wBC-MO-a2A"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Open App" image="link" id="BJQ-XC-TSD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lO6-vN-ms0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="690" y="391.90140845070425"/>
+        </scene>
+        <!--Picker-->
+        <scene sceneID="pZV-EH-Y1L">
+            <objects>
+                <viewController id="wnI-lK-AtC" customClass="dependentPickerViewController" customModule="lab1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="q71-ZH-kB6"/>
+                        <viewControllerLayoutGuide type="bottom" id="UA3-UU-3uP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CgM-tu-qAa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your Country and City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iul-jn-9gz">
+                                <rect key="frame" x="50" y="41" width="220" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkf-oO-76A">
+                                <rect key="frame" x="0.0" y="86" width="320" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="216" id="X5F-qd-88J"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="X5F-qd-88J"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="X5F-qd-88J"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="wnI-lK-AtC" id="qB1-my-jXK"/>
+                                    <outlet property="delegate" destination="wnI-lK-AtC" id="MB5-6p-Gw5"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQW-of-MNA">
+                                <rect key="frame" x="16" y="310" width="288" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="ZIN-RT-QKU"/>
+                                    <constraint firstAttribute="height" constant="25" id="hCV-KG-JPU"/>
+                                    <constraint firstAttribute="width" constant="200" id="le0-o2-w0A"/>
+                                    <constraint firstAttribute="width" constant="288" id="yS6-x6-fJ5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hCV-KG-JPU"/>
+                                        <exclude reference="le0-o2-w0A"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="ZIN-RT-QKU"/>
+                                        <include reference="hCV-KG-JPU"/>
+                                        <exclude reference="le0-o2-w0A"/>
+                                        <exclude reference="yS6-x6-fJ5"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Req-zw-Bm6">
+                                <rect key="frame" x="16" y="343" width="288" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="V7j-xw-bkT"/>
+                                    <constraint firstAttribute="height" constant="25" id="XcX-bD-tGU"/>
+                                    <constraint firstAttribute="width" constant="288" id="ZL2-E3-kEh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="XcX-bD-tGU"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="V7j-xw-bkT"/>
+                                        <include reference="XcX-bD-tGU"/>
+                                        <exclude reference="ZL2-E3-kEh"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.39402913253209815" blue="0.23568288598205234" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="eQW-of-MNA" firstAttribute="leading" secondItem="Req-zw-Bm6" secondAttribute="leading" id="12G-3B-Ax2"/>
+                            <constraint firstItem="eQW-of-MNA" firstAttribute="centerX" secondItem="Mkf-oO-76A" secondAttribute="centerX" id="4Pr-t2-PLa"/>
+                            <constraint firstItem="eQW-of-MNA" firstAttribute="trailing" secondItem="CgM-tu-qAa" secondAttribute="trailingMargin" id="AhN-OM-r1I"/>
+                            <constraint firstItem="Req-zw-Bm6" firstAttribute="top" secondItem="eQW-of-MNA" secondAttribute="bottom" constant="38" id="BY1-Je-Qzp"/>
+                            <constraint firstItem="Mkf-oO-76A" firstAttribute="top" secondItem="Iul-jn-9gz" secondAttribute="bottom" constant="24" id="DDb-9p-qh4">
+                                <variation key="heightClass=compact" constant="22"/>
+                            </constraint>
+                            <constraint firstItem="Iul-jn-9gz" firstAttribute="top" secondItem="q71-ZH-kB6" secondAttribute="bottom" constant="21" id="Djw-ck-z7b">
+                                <variation key="heightClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="eQW-of-MNA" firstAttribute="top" secondItem="Mkf-oO-76A" secondAttribute="bottom" constant="8" id="HjL-XA-IqU"/>
+                            <constraint firstItem="Mkf-oO-76A" firstAttribute="centerX" secondItem="CgM-tu-qAa" secondAttribute="centerX" id="KuS-aQ-sv5"/>
+                            <constraint firstItem="Mkf-oO-76A" firstAttribute="top" secondItem="Iul-jn-9gz" secondAttribute="bottom" constant="6" id="Lso-6A-Jky"/>
+                            <constraint firstItem="eQW-of-MNA" firstAttribute="top" secondItem="Iul-jn-9gz" secondAttribute="bottom" constant="54" id="QKp-6e-WiE"/>
+                            <constraint firstItem="Iul-jn-9gz" firstAttribute="centerX" secondItem="CgM-tu-qAa" secondAttribute="centerX" id="Tvu-gj-B25"/>
+                            <constraint firstItem="eQW-of-MNA" firstAttribute="trailing" secondItem="Req-zw-Bm6" secondAttribute="trailing" id="eff-hA-anx"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Mkf-oO-76A" secondAttribute="leading" id="fEB-fE-W6R"/>
+                            <constraint firstItem="Iul-jn-9gz" firstAttribute="centerX" secondItem="Mkf-oO-76A" secondAttribute="centerX" id="nfD-AC-jNT">
+                                <variation key="heightClass=compact" constant="113"/>
+                            </constraint>
+                            <constraint firstItem="Req-zw-Bm6" firstAttribute="top" secondItem="eQW-of-MNA" secondAttribute="bottom" constant="8" id="rCB-IV-7MF"/>
+                            <constraint firstItem="eQW-of-MNA" firstAttribute="leading" secondItem="Mkf-oO-76A" secondAttribute="trailing" constant="8" symbolic="YES" id="rxM-6g-dxD"/>
+                            <constraint firstItem="Req-zw-Bm6" firstAttribute="centerX" secondItem="eQW-of-MNA" secondAttribute="centerX" id="wKZ-ow-cxV"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Lso-6A-Jky"/>
+                                <exclude reference="fEB-fE-W6R"/>
+                                <exclude reference="Tvu-gj-B25"/>
+                                <exclude reference="12G-3B-Ax2"/>
+                                <exclude reference="AhN-OM-r1I"/>
+                                <exclude reference="QKp-6e-WiE"/>
+                                <exclude reference="eff-hA-anx"/>
+                                <exclude reference="rxM-6g-dxD"/>
+                                <exclude reference="BY1-Je-Qzp"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="DDb-9p-qh4"/>
+                                <exclude reference="KuS-aQ-sv5"/>
+                                <include reference="Lso-6A-Jky"/>
+                                <include reference="fEB-fE-W6R"/>
+                                <include reference="Tvu-gj-B25"/>
+                                <exclude reference="nfD-AC-jNT"/>
+                                <include reference="12G-3B-Ax2"/>
+                                <exclude reference="4Pr-t2-PLa"/>
+                                <include reference="AhN-OM-r1I"/>
+                                <exclude reference="HjL-XA-IqU"/>
+                                <include reference="QKp-6e-WiE"/>
+                                <include reference="eff-hA-anx"/>
+                                <include reference="rxM-6g-dxD"/>
+                                <include reference="BY1-Je-Qzp"/>
+                                <exclude reference="rCB-IV-7MF"/>
+                                <exclude reference="wKZ-ow-cxV"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Picker" image="pickerView" id="i95-ik-bdv"/>
+                    <connections>
+                        <outlet property="cityLabel" destination="eQW-of-MNA" id="3QL-Dv-CMJ"/>
+                        <outlet property="countryCityPicker" destination="Mkf-oO-76A" id="wUh-2P-NT6"/>
+                        <outlet property="countryLabel" destination="Req-zw-Bm6" id="INl-wt-HmR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nZG-nf-Tqr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="687.5" y="-264.375"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="707-Q2-3DB">
+            <objects>
+                <tabBarController id="isB-cH-F9V" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="mGb-Dh-dbq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="wnI-lK-AtC" kind="relationship" relationship="viewControllers" id="zdW-ij-QqO"/>
+                        <segue destination="Zky-bw-INh" kind="relationship" relationship="viewControllers" id="tnF-k0-Cil"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n5z-vc-zpz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-263" y="65"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="link" width="23" height="20"/>
+        <image name="pickerView" width="20" height="20"/>
+    </resources>
+</document>

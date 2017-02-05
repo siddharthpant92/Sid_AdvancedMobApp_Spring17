@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>USA</key>
+	<array>
+		<string>Boulder</string>
+		<string>New York</string>
+		<string>San Fransisco</string>
+		<string>Raleigh</string>
+		<string>Pittsburgh</string>
+	</array>
+	<key>India</key>
+	<array>
+		<string>Bengaluru</string>
+		<string>Mumbai</string>
+		<string>Kolkata</string>
+		<string>Chennai</string>
+		<string>New Delhi</string>
+	</array>
+	<key>England</key>
+	<array>
+		<string>London</string>
+		<string>Manchester</string>
+		<string>Birmingham</string>
+		<string>Sheffield</string>
+		<string>Portsmouth</string>
+	</array>
+	<key>Australia</key>
+	<array>
+		<string>Sydney</string>
+		<string>Melbourne</string>
+		<string>Brisbane</string>
+		<string>Perth</string>
+		<string>Adelaide</string>
+	</array>
+	<key>China</key>
+	<array>
+		<string>Beijing</string>
+		<string>Shanghai</string>
+		<string>Shenzhen</string>
+		<string>Wuhan</string>
+		<string>Jinan</string>
+	</array>
+	<key>France</key>
+	<array>
+		<string>Paris</string>
+		<string>Marseille</string>
+		<string>Bordeaux</string>
+		<string>Nice</string>
+		<string>Lyon</string>
+	</array>
+</dict>
+</plist>
