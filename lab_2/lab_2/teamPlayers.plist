@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Man Utd</key>
+	<array>
+		<string>Rooney</string>
+		<string>Carrick</string>
+		<string>Zlatan</string>
+	</array>
+	<key>Chelsea</key>
+	<array>
+		<string>Hazard</string>
+		<string>Costa</string>
+		<string>Luiz</string>
+	</array>
+	<key>Golden State Warriors</key>
+	<array>
+		<string>Curry</string>
+		<string>Durant</string>
+	</array>
+	<key>Clevelan Cavaliers</key>
+	<array>
+		<string>James</string>
+		<string>Irving</string>
+		<string>Korver</string>
+	</array>
+	<key>India Cricket</key>
+	<array>
+		<string>Kohli</string>
+		<string>Dhoni</string>
+	</array>
+	<key>FC Bayern Munich</key>
+	<array>
+		<string>Lahm</string>
+		<string>Mueller</string>
+		<string>Lewandowski</string>
+	</array>
+	<key>FC Barcelona</key>
+	<array>
+		<string>Messi</string>
+		<string>Neymar</string>
+	</array>
+</dict>
+</plist>
