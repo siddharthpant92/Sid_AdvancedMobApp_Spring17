@@ -23,8 +23,12 @@ class AddPlayersViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func saveButtonTapped(_ sender: Any) {
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "savePlayerToPlayers")
+        {
+            let destinationVC = segue.destination as! PlayersTableViewController
+            destinationVC.newPlayer = newPlayer.text!
+        }
     }
 
     /*

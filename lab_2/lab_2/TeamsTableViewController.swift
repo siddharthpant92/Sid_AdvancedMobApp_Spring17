@@ -45,6 +45,7 @@ class TeamsTableViewController: UITableViewController {
     }
 
     func applicationWillResignActive(_ notification: Notification){
+        print("writing")
         let filePath = loadFile(newFile)
         let data = NSMutableDictionary()
         //adds our whole dictionary to the data dictionary
@@ -156,6 +157,7 @@ class TeamsTableViewController: UITableViewController {
             let destinationVC = segue.destination as! PlayersTableViewController
             destinationVC.players = selectedPlayers
             destinationVC.team = selectedTeam
+            destinationVC.teamPlayer = teamPlayer
         }
     }
 

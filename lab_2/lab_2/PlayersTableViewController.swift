@@ -10,8 +10,12 @@ import UIKit
 
 class PlayersTableViewController: UITableViewController {
 
+    var teamPlayer = TeamPlayers()
+    
     var players = [String]()
     var team = String()
+    
+    var newPlayer = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +35,18 @@ class PlayersTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        //Adding new player if coming back after adding new player
+        if (newPlayer != "")
+        {
+            players.append(newPlayer)
+            tableView.reloadData()
+            teamPlayer.teamAndPlayer[team]?.append(newPlayer)
+        }
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -62,17 +78,18 @@ class PlayersTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            players.remove(at: indexPath.row)
+            teamPlayer.teamAndPlayer[team]?.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
+            } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+   
 
     /*
     // Override to support rearranging the table view.
