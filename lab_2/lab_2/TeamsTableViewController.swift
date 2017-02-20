@@ -70,7 +70,7 @@ class TeamsTableViewController: UITableViewController {
     
     func loadOldFile()->String?
     {
-        guard let pathString = Bundle.main.path(forResource: "continents", ofType: "plist")
+        guard let pathString = Bundle.main.path(forResource: "teamPlayers", ofType: "plist")
         else
         {
             return nil
@@ -91,16 +91,20 @@ class TeamsTableViewController: UITableViewController {
         return teamPlayer.teamAndPlayer.count
     }
 
-    /*
+   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        // Configure the cell...
-
+        cell.textLabel?.text = teamPlayer.teams[indexPath.row]
         return cell
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedTeam = teamPlayer.teams[indexPath.row]
+        selectedPlayers = teamPlayer.teamAndPlayer[selectedTeam]!
+        self.performSegue(withIdentifier: "teamToPlayers", sender: self)
+    }
+  
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -145,5 +149,14 @@ class TeamsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "teamToPlayers")
+        {
+            let destinationVC = segue.destination as! PlayersTableViewController
+            destinationVC.players = selectedPlayers
+            destinationVC.team = selectedTeam
+        }
+    }
 
 }
