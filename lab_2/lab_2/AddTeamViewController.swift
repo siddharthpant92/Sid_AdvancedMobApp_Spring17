@@ -1,16 +1,16 @@
 //
-//  AddPlayersViewController.swift
+//  AddTeamViewController.swift
 //  lab_2
 //
-//  Created by Siddharth on 2/19/17.
+//  Created by Siddharth on 2/20/17.
 //  Copyright © 2017 Siddharth. All rights reserved.
 //
 
 import UIKit
 
-class AddPlayersViewController: UIViewController {
+class AddTeamViewController: UIViewController {
 
-    @IBOutlet weak var newPlayer: UITextField!
+    @IBOutlet weak var newTeam: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +25,10 @@ class AddPlayersViewController: UIViewController {
     
     //segue is from button itself in storyboard
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "savePlayerToPlayers")
+        if(segue.identifier == "saveTeamToTeams")
         {
-            let destinationVC = segue.destination as! PlayersTableViewController
-            destinationVC.newPlayer = newPlayer.text!
+            let destinationVC = segue.destination as! TeamsTableViewController
+            destinationVC.newTeam = newTeam.text!
         }
     }
 

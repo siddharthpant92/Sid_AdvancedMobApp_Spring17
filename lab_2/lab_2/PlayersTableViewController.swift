@@ -43,11 +43,12 @@ class PlayersTableViewController: UITableViewController {
         if (newPlayer != "")
         {
             players.append(newPlayer)
-            tableView.reloadData()
             teamPlayer.teamAndPlayer[team]?.append(newPlayer)
+            tableView.reloadData()
         }
     }
-
+    
+  
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -115,5 +116,14 @@ class PlayersTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    override func viewWillDisappear(_ animated : Bool) {
+        super.viewWillDisappear(animated)
+        if(isMovingToParentViewController)
+        {
+            let parentVC = TeamsTableViewController()
+            parentVC.newPlayer = newPlayer
+        }
+    }
+    
 }

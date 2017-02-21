@@ -15,6 +15,7 @@
 		1F40B1AC1E5A672A007A83E8 /* PlayersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F40B1AB1E5A672A007A83E8 /* PlayersTableViewController.swift */; };
 		1F40B1AE1E5A6771007A83E8 /* AddPlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F40B1AD1E5A6771007A83E8 /* AddPlayersViewController.swift */; };
 		1F40B1B01E5A6945007A83E8 /* TeamPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F40B1AF1E5A6945007A83E8 /* TeamPlayers.swift */; };
+		1F740A811E5BDDDB007E981C /* AddTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F740A801E5BDDDB007E981C /* AddTeamViewController.swift */; };
 		1FFE3F2F1E5B730600384214 /* teamPlayers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FFE3F2E1E5B730600384214 /* teamPlayers.plist */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		1F40B1AB1E5A672A007A83E8 /* PlayersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersTableViewController.swift; sourceTree = "<group>"; };
 		1F40B1AD1E5A6771007A83E8 /* AddPlayersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlayersViewController.swift; sourceTree = "<group>"; };
 		1F40B1AF1E5A6945007A83E8 /* TeamPlayers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamPlayers.swift; sourceTree = "<group>"; };
+		1F740A801E5BDDDB007E981C /* AddTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTeamViewController.swift; sourceTree = "<group>"; };
 		1FFE3F2E1E5B730600384214 /* teamPlayers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = teamPlayers.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +66,7 @@
 			children = (
 				1F40B1971E5A667A007A83E8 /* AppDelegate.swift */,
 				1F40B19B1E5A667A007A83E8 /* Main.storyboard */,
+				1F740A801E5BDDDB007E981C /* AddTeamViewController.swift */,
 				1F40B1AF1E5A6945007A83E8 /* TeamPlayers.swift */,
 				1F40B1AD1E5A6771007A83E8 /* AddPlayersViewController.swift */,
 				1F40B1AB1E5A672A007A83E8 /* PlayersTableViewController.swift */,
@@ -151,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F40B1AA1E5A6704007A83E8 /* TeamsTableViewController.swift in Sources */,
+				1F740A811E5BDDDB007E981C /* AddTeamViewController.swift in Sources */,
 				1F40B1B01E5A6945007A83E8 /* TeamPlayers.swift in Sources */,
 				1F40B1AE1E5A6771007A83E8 /* AddPlayersViewController.swift in Sources */,
 				1F40B1981E5A667A007A83E8 /* AppDelegate.swift in Sources */,

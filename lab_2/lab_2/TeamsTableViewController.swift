@@ -17,6 +17,9 @@ class TeamsTableViewController: UITableViewController {
     var selectedTeam = String()
     var selectedPlayers = [String]()
     
+    var newTeam = String()
+    var newPlayer = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,12 +41,34 @@ class TeamsTableViewController: UITableViewController {
         //puts all the continents in an array
         teamPlayer.teams = Array(teamPlayer.teamAndPlayer.keys)
         
-        //Need to add a listener for when a new country is added
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        //Need to add a listener for when a new team is added
         let app = UIApplication.shared
         //subscribe to the UIApplicationWillResignActiveNotification notification
         NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationWillResignActive(_:)), name: NSNotification.Name(rawValue: "UIApplicationWillResignActiveNotification"), object: app)
+        
+        if(newTeam != "")
+        {
+            teamPlayer.teams.append(newTeam)
+            if(newPlayer != "")
+            {
+                //adding new player to new team without UIApplicationWillResignActiveNotification
+                teamPlayer.teamAndPlayer[newTeam]?.append(newPlayer)
+            }
+            else
+            {
+                //On adding a new team the first time
+                teamPlayer.teamAndPlayer[newTeam] = []
+            }
+            //Reinitialising otherwise a new player can't be added to the new team since it goes to else condition above without UIApplicationWillResignActiveNotification
+            newTeam = ""
+            tableView.reloadData()
+        }
     }
-
+    
     func applicationWillResignActive(_ notification: Notification){
         let filePath = loadFile(newFile)
         let data = NSMutableDictionary()
@@ -105,6 +130,11 @@ class TeamsTableViewController: UITableViewController {
         self.performSegue(withIdentifier: "teamToPlayers", sender: self)
     }
   
+    @IBAction func backToTeams(_ segue: UIStoryboardSegue)
+    {
+        
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -113,18 +143,19 @@ class TeamsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            let teamToBedDeleted = teamPlayer.teams[indexPath.row]
+            teamPlayer.teams.remove(at: indexPath.row)
+            teamPlayer.teamAndPlayer[teamToBedDeleted] = nil
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
-
+   
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {

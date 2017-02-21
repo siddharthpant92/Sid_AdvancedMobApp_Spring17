@@ -33,7 +33,13 @@
                             <outlet property="delegate" destination="k3S-8F-2HR" id="YGk-VM-YVd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Teams" id="z6a-s1-hWG"/>
+                    <navigationItem key="navigationItem" title="Teams" id="z6a-s1-hWG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="WVb-SS-rcf">
+                            <connections>
+                                <segue destination="49G-lJ-QXU" kind="presentation" identifier="TeamPlayersToAddTeam" id="W3Q-vN-4ie"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="hBv-J9-fg4" kind="show" identifier="teamToPlayers" id="Iyz-uD-2SV"/>
                     </connections>
@@ -41,6 +47,138 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIH-Nf-xcf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1545" y="24.295774647887324"/>
+        </scene>
+        <!--Add Team View Controller-->
+        <scene sceneID="R4v-RK-h8y">
+            <objects>
+                <viewController id="49G-lJ-QXU" customClass="AddTeamViewController" customModule="lab_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NRA-7u-568"/>
+                        <viewControllerLayoutGuide type="bottom" id="EqA-7d-rdy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8qw-bR-Fc7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4l-GS-27J">
+                                <rect key="frame" x="114.5" y="47" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gm7-YT-1k4">
+                                <rect key="frame" x="16" y="84" width="288" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EzS-1a-d9B">
+                                <rect key="frame" x="67.5" y="135" width="185" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="185" id="bds-2q-vRz"/>
+                                    <constraint firstAttribute="width" constant="150" id="v6W-lu-p1s"/>
+                                </constraints>
+                                <state key="normal" title="Save"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="v6W-lu-p1s"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="bds-2q-vRz"/>
+                                        <include reference="v6W-lu-p1s"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <segue destination="UxW-hS-bkj" kind="unwind" identifier="saveTeamToTeams" unwindAction="backToTeams:" id="5kS-Bf-wt8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aH5-Zr-ebe">
+                                <rect key="frame" x="67.5" y="194" width="185" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="185" id="10L-km-os2"/>
+                                    <constraint firstAttribute="width" constant="150" id="YLU-GO-3zc"/>
+                                </constraints>
+                                <state key="normal" title="Cancel"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="YLU-GO-3zc"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="10L-km-os2"/>
+                                        <include reference="YLU-GO-3zc"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <segue destination="UxW-hS-bkj" kind="unwind" identifier="cancelTeamsToTeams" unwindAction="backToTeams:" id="Lax-IK-t3W"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gm7-YT-1k4" firstAttribute="leading" secondItem="8qw-bR-Fc7" secondAttribute="leadingMargin" constant="37" id="1zi-mF-xii"/>
+                            <constraint firstItem="EzS-1a-d9B" firstAttribute="top" secondItem="gm7-YT-1k4" secondAttribute="bottom" constant="21" id="3F0-DY-GMh"/>
+                            <constraint firstItem="gm7-YT-1k4" firstAttribute="centerX" secondItem="8qw-bR-Fc7" secondAttribute="centerX" id="Ez4-Iz-Pve"/>
+                            <constraint firstItem="gm7-YT-1k4" firstAttribute="leading" secondItem="8qw-bR-Fc7" secondAttribute="leadingMargin" id="KMJ-f5-wnt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gm7-YT-1k4" secondAttribute="trailing" id="MhD-O5-U7I"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gm7-YT-1k4" secondAttribute="trailing" constant="38" id="OcJ-2g-7OX"/>
+                            <constraint firstItem="gm7-YT-1k4" firstAttribute="top" secondItem="A4l-GS-27J" secondAttribute="bottom" constant="16" id="Oyo-Ut-RzO"/>
+                            <constraint firstItem="A4l-GS-27J" firstAttribute="centerX" secondItem="8qw-bR-Fc7" secondAttribute="centerX" id="Ru8-7h-7yP"/>
+                            <constraint firstItem="EzS-1a-d9B" firstAttribute="leading" secondItem="gm7-YT-1k4" secondAttribute="leading" id="hdW-ku-Sne"/>
+                            <constraint firstItem="A4l-GS-27J" firstAttribute="top" secondItem="NRA-7u-568" secondAttribute="bottom" constant="27" id="mP4-tS-KgM"/>
+                            <constraint firstItem="aH5-Zr-ebe" firstAttribute="top" secondItem="gm7-YT-1k4" secondAttribute="bottom" constant="16" id="ogr-9w-W2y"/>
+                            <constraint firstItem="EzS-1a-d9B" firstAttribute="centerX" secondItem="gm7-YT-1k4" secondAttribute="centerX" id="qdn-8h-PhV"/>
+                            <constraint firstItem="aH5-Zr-ebe" firstAttribute="top" secondItem="EzS-1a-d9B" secondAttribute="bottom" constant="29" id="rFX-vE-p8V"/>
+                            <constraint firstItem="gm7-YT-1k4" firstAttribute="top" secondItem="A4l-GS-27J" secondAttribute="bottom" constant="16" id="rZA-9p-XNG"/>
+                            <constraint firstItem="aH5-Zr-ebe" firstAttribute="trailing" secondItem="gm7-YT-1k4" secondAttribute="trailing" id="rfO-nK-8UH"/>
+                            <constraint firstItem="EzS-1a-d9B" firstAttribute="baseline" secondItem="aH5-Zr-ebe" secondAttribute="baseline" id="s60-Ud-S1O"/>
+                            <constraint firstItem="gm7-YT-1k4" firstAttribute="centerX" secondItem="8qw-bR-Fc7" secondAttribute="centerX" id="w2T-4i-8NT"/>
+                            <constraint firstItem="aH5-Zr-ebe" firstAttribute="centerX" secondItem="8qw-bR-Fc7" secondAttribute="centerX" id="zkC-lw-N0k"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1zi-mF-xii"/>
+                                <exclude reference="OcJ-2g-7OX"/>
+                                <exclude reference="Oyo-Ut-RzO"/>
+                                <exclude reference="w2T-4i-8NT"/>
+                                <exclude reference="hdW-ku-Sne"/>
+                                <exclude reference="s60-Ud-S1O"/>
+                                <exclude reference="ogr-9w-W2y"/>
+                                <exclude reference="rfO-nK-8UH"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="1zi-mF-xii"/>
+                                <exclude reference="Ez4-Iz-Pve"/>
+                                <exclude reference="KMJ-f5-wnt"/>
+                                <exclude reference="MhD-O5-U7I"/>
+                                <include reference="OcJ-2g-7OX"/>
+                                <include reference="Oyo-Ut-RzO"/>
+                                <exclude reference="rZA-9p-XNG"/>
+                                <include reference="w2T-4i-8NT"/>
+                                <exclude reference="3F0-DY-GMh"/>
+                                <include reference="hdW-ku-Sne"/>
+                                <exclude reference="qdn-8h-PhV"/>
+                                <include reference="s60-Ud-S1O"/>
+                                <include reference="ogr-9w-W2y"/>
+                                <exclude reference="rFX-vE-p8V"/>
+                                <include reference="rfO-nK-8UH"/>
+                                <exclude reference="zkC-lw-N0k"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="newTeam" destination="gm7-YT-1k4" id="jTP-YV-IRi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Xe-Xx-Gvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="UxW-hS-bkj" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2528.8732394366198" y="-283.125"/>
         </scene>
         <!--Players Table View Controller-->
         <scene sceneID="hzS-7A-zC2">
@@ -77,7 +215,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hcd-Fj-l9c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2371.875" y="23.239436619718312"/>
+            <point key="canvasLocation" x="2533" y="406"/>
         </scene>
         <!--Add Players View Controller-->
         <scene sceneID="vaC-bI-TCO">
@@ -191,7 +329,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BeL-ei-TED" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="C0b-dK-7wq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3220" y="455.625"/>
+            <point key="canvasLocation" x="3311" y="406"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LUY-ng-rev">
