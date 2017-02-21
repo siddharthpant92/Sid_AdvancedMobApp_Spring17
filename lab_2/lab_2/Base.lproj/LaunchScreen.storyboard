@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,9 +18,55 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advanced Mobile Application Developement" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNg-eb-8A2">
+                                <rect key="frame" x="9" y="194" width="302" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siddharth Pant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahC-0I-QNg">
+                                <rect key="frame" x="103" y="146" width="114" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="GTi-g4-yRo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ATLS 4519/5519-040/041 Spring 17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSZ-e5-yPy">
+                                <rect key="frame" x="44" y="245" width="232" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="vxU-zS-vBB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lab 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3I-vx-Mpb">
+                                <rect key="frame" x="119" y="96" width="82" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="82" id="14y-9I-ov7"/>
+                                    <constraint firstAttribute="height" constant="21" id="Nq0-3X-jMS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="jSZ-e5-yPy" firstAttribute="top" secondItem="oNg-eb-8A2" secondAttribute="bottom" constant="33" id="7vU-jx-fEq"/>
+                            <constraint firstItem="f3I-vx-Mpb" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="76" id="FHL-Y1-0fl"/>
+                            <constraint firstItem="ahC-0I-QNg" firstAttribute="top" secondItem="f3I-vx-Mpb" secondAttribute="bottom" constant="29" id="JzN-Pc-uFc"/>
+                            <constraint firstItem="oNg-eb-8A2" firstAttribute="top" secondItem="ahC-0I-QNg" secondAttribute="bottom" constant="27" id="ZN6-Jg-ULc"/>
+                            <constraint firstItem="f3I-vx-Mpb" firstAttribute="centerX" secondItem="ahC-0I-QNg" secondAttribute="centerX" id="g14-up-CPc"/>
+                            <constraint firstItem="ahC-0I-QNg" firstAttribute="centerX" secondItem="oNg-eb-8A2" secondAttribute="centerX" id="hfs-W8-Mt6"/>
+                            <constraint firstItem="oNg-eb-8A2" firstAttribute="centerX" secondItem="jSZ-e5-yPy" secondAttribute="centerX" id="krx-e0-OtU"/>
+                            <constraint firstItem="f3I-vx-Mpb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zkN-KU-bL8"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -92,7 +92,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a player" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jT-om-DAY">
-                                <rect key="frame" x="113" y="54" width="95" height="20.5"/>
+                                <rect key="frame" x="112.5" y="54" width="95" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -103,32 +103,86 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QU7-Xk-RWt">
-                                <rect key="frame" x="61" y="225" width="198" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRV-zH-6vv">
+                                <rect key="frame" x="64" y="158" width="192" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="192" id="cld-H2-4EZ">
+                                        <variation key="heightClass=compact" constant="150"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="192" id="tNS-SB-EpV"/>
+                                </constraints>
+                                <state key="normal" title="Save"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="cld-H2-4EZ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="cld-H2-4EZ"/>
+                                        <exclude reference="tNS-SB-EpV"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <segue destination="C0b-dK-7wq" kind="unwind" identifier="savePlayerToPlayers" unwindAction="backToPlayers:" id="fgl-Ht-Z2Y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QU7-Xk-RWt">
+                                <rect key="frame" x="64" y="214" width="192" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="192" id="A85-Rt-sCX">
+                                        <variation key="heightClass=compact" constant="150"/>
+                                    </constraint>
+                                </constraints>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
                                     <segue destination="C0b-dK-7wq" kind="unwind" identifier="cancelPlayersToPlayer" unwindAction="backToPlayers:" id="fdv-mN-RbJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRV-zH-6vv">
-                                <rect key="frame" x="61" y="159" width="198" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <segue destination="C0b-dK-7wq" kind="unwind" identifier="savePlayerToPlayers" unwindAction="backToPlayers:" id="fgl-Ht-Z2Y"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="m1T-lM-hiQ" secondAttribute="trailing" id="B8b-hf-cBu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="m1T-lM-hiQ" secondAttribute="trailing" id="B8b-hf-cBu">
+                                <variation key="heightClass=compact" constant="56"/>
+                            </constraint>
+                            <constraint firstItem="QU7-Xk-RWt" firstAttribute="top" secondItem="bRV-zH-6vv" secondAttribute="bottom" constant="26" id="DfH-Qt-32w"/>
+                            <constraint firstItem="QU7-Xk-RWt" firstAttribute="leading" secondItem="m1T-lM-hiQ" secondAttribute="trailing" constant="-192" id="ImI-Rx-47K">
+                                <variation key="heightClass=compact" constant="-150"/>
+                            </constraint>
+                            <constraint firstItem="bRV-zH-6vv" firstAttribute="centerX" secondItem="m1T-lM-hiQ" secondAttribute="centerX" id="UAi-IV-7wQ"/>
+                            <constraint firstItem="bRV-zH-6vv" firstAttribute="baseline" secondItem="QU7-Xk-RWt" secondAttribute="baseline" id="UPp-je-IMK"/>
                             <constraint firstItem="m1T-lM-hiQ" firstAttribute="top" secondItem="2jT-om-DAY" secondAttribute="bottom" constant="29.5" id="XCZ-gu-xYC"/>
                             <constraint firstItem="2jT-om-DAY" firstAttribute="top" secondItem="X21-IL-sYY" secondAttribute="bottom" constant="34" id="fQa-YN-AEp"/>
+                            <constraint firstItem="QU7-Xk-RWt" firstAttribute="top" secondItem="m1T-lM-hiQ" secondAttribute="bottom" constant="22" id="gax-ld-kzy"/>
                             <constraint firstItem="2jT-om-DAY" firstAttribute="centerX" secondItem="psF-qj-ZIv" secondAttribute="centerX" id="htD-J4-9UK"/>
                             <constraint firstItem="m1T-lM-hiQ" firstAttribute="centerX" secondItem="psF-qj-ZIv" secondAttribute="centerX" id="hx5-0k-aKH"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="m1T-lM-hiQ" secondAttribute="leading" id="rmQ-Gv-bHb"/>
+                            <constraint firstItem="bRV-zH-6vv" firstAttribute="top" secondItem="m1T-lM-hiQ" secondAttribute="bottom" constant="24" id="kLp-Nr-UJK"/>
+                            <constraint firstItem="bRV-zH-6vv" firstAttribute="leading" secondItem="m1T-lM-hiQ" secondAttribute="leading" id="lih-Pl-v2F"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="m1T-lM-hiQ" secondAttribute="leading" id="rmQ-Gv-bHb">
+                                <variation key="heightClass=compact" constant="-57"/>
+                            </constraint>
+                            <constraint firstItem="QU7-Xk-RWt" firstAttribute="centerX" secondItem="bRV-zH-6vv" secondAttribute="centerX" id="zUc-i6-Y8g"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="UPp-je-IMK"/>
+                                <exclude reference="lih-Pl-v2F"/>
+                                <exclude reference="ImI-Rx-47K"/>
+                                <exclude reference="gax-ld-kzy"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="UAi-IV-7wQ"/>
+                                <include reference="UPp-je-IMK"/>
+                                <exclude reference="kLp-Nr-UJK"/>
+                                <include reference="lih-Pl-v2F"/>
+                                <exclude reference="DfH-Qt-32w"/>
+                                <include reference="ImI-Rx-47K"/>
+                                <include reference="gax-ld-kzy"/>
+                                <exclude reference="zUc-i6-Y8g"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="newPlayer" destination="m1T-lM-hiQ" id="MV2-wd-Xbi"/>
@@ -137,7 +191,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BeL-ei-TED" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="C0b-dK-7wq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3221.25" y="456.33802816901408"/>
+            <point key="canvasLocation" x="3220" y="455.625"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LUY-ng-rev">
