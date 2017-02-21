@@ -116,14 +116,4 @@ class PlayersTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    override func viewWillDisappear(_ animated : Bool) {
-        super.viewWillDisappear(animated)
-        if(isMovingToParentViewController)
-        {
-            let parentVC = TeamsTableViewController()
-            parentVC.newPlayer = newPlayer
-        }
-    }
-    
 }

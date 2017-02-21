@@ -18,7 +18,6 @@ class TeamsTableViewController: UITableViewController {
     var selectedPlayers = [String]()
     
     var newTeam = String()
-    var newPlayer = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,19 +52,12 @@ class TeamsTableViewController: UITableViewController {
         if(newTeam != "")
         {
             teamPlayer.teams.append(newTeam)
-            if(newPlayer != "")
-            {
-                //adding new player to new team without UIApplicationWillResignActiveNotification
-                teamPlayer.teamAndPlayer[newTeam]?.append(newPlayer)
-            }
-            else
-            {
-                //On adding a new team the first time
-                teamPlayer.teamAndPlayer[newTeam] = []
-            }
-            //Reinitialising otherwise a new player can't be added to the new team since it goes to else condition above without UIApplicationWillResignActiveNotification
-            newTeam = ""
+            teamPlayer.teamAndPlayer[newTeam] = []
             tableView.reloadData()
+            
+            //Reinitialising otherwise a new player can't be added to the new team since
+            //the array of values for that newTeam will otherwise be reinitialised to empty all the time
+            newTeam = ""
         }
     }
     
