@@ -8,7 +8,9 @@
 
 import UIKit
 
-class TeamsTableViewController: UITableViewController {
+class TeamsTableViewController: UITableViewController, UISearchBarDelegate {
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var teamPlayer = TeamPlayers()
     
@@ -18,6 +20,10 @@ class TeamsTableViewController: UITableViewController {
     var selectedPlayers = [String]()
     
     var newTeam = String()
+    
+    var searching = Bool()
+    
+    var filteredTeams = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +45,8 @@ class TeamsTableViewController: UITableViewController {
         teamPlayer.teamAndPlayer = NSDictionary(contentsOfFile: path!) as! [String : [String]]
         //puts all the continents in an array
         teamPlayer.teams = Array(teamPlayer.teamAndPlayer.keys)
+        
+        filteredTeams = []
         
     }
 
@@ -104,28 +112,48 @@ class TeamsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return teamPlayer.teamAndPlayer.count
+        if(searching == true)
+        {
+            return filteredTeams.count
+        }
+        else
+        {
+            return teamPlayer.teamAndPlayer.count
+        }
+        
     }
 
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
-        cell.textLabel?.text = teamPlayer.teams[indexPath.row]
+        if(searching == true)
+        {
+            cell.textLabel?.text = filteredTeams[indexPath.row]
+        }
+        else
+        {
+            cell.textLabel?.text = teamPlayer.teams[indexPath.row]
+        }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedTeam = teamPlayer.teams[indexPath.row]
-        selectedPlayers = teamPlayer.teamAndPlayer[selectedTeam]!
-        self.performSegue(withIdentifier: "teamToPlayers", sender: self)
+        if(searching == true)
+        {
+            selectedTeam = filteredTeams[indexPath.row]
+            selectedPlayers = teamPlayer.teamAndPlayer[selectedTeam]!
+            self.performSegue(withIdentifier: "teamToPlayers", sender: self)
+        }
+        else
+        {
+            selectedTeam = teamPlayer.teams[indexPath.row]
+            selectedPlayers = teamPlayer.teamAndPlayer[selectedTeam]!
+            self.performSegue(withIdentifier: "teamToPlayers", sender: self)
+        }
     }
   
     @IBAction func backToTeams(_ segue: UIStoryboardSegue)
-    {
-        
-    }
+    {}
     
     /*
     // Override to support conditional editing of the table view.
@@ -148,6 +176,32 @@ class TeamsTableViewController: UITableViewController {
         }    
     }
    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if(searchText == "")
+        {
+            searching = false
+            tableView.reloadData()
+        }
+        else
+        {
+            searching = true
+            filteredTeams = []
+            let newSearchText = searchText.lowercased()
+            for i in teamPlayer.teams
+            {
+                if((i.lowercased().range(of: newSearchText)) != nil)
+                {
+                    filteredTeams.append(i)
+                }
+            }
+            tableView.reloadData()
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lab_2/TeamsTableViewController.swift"
-            timestampString = "509382435.808352"
+            timestampString = "509431137.205338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "applicationWillResignActive(_:)"
             landmarkType = "7">
          </BreakpointContent>
