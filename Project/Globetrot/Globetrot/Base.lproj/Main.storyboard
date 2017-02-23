@@ -18,16 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Enter your place" showsCancelButton="YES" id="DxI-kW-HLP">
+                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="tZO-eY-1Oa">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
-                            <scopeButtonTitles>
-                                <string>Title</string>
-                                <string>Title</string>
-                            </scopeButtonTitles>
                             <connections>
-                                <outlet property="delegate" destination="INo-gq-xhf" id="dsB-DW-uvg"/>
+                                <outlet property="delegate" destination="INo-gq-xhf" id="3Kd-dY-eIq"/>
                             </connections>
                         </searchBar>
                         <prototypes>
@@ -71,30 +67,33 @@
                     <navigationItem key="navigationItem" title="My Places" id="0Mh-kj-cpI">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JIQ-H4-D67">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="addPlaceTapped:" destination="INo-gq-xhf" id="kqK-so-a6f"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchDisplayController" destination="qku-gg-k8w" id="fEW-2B-fDu"/>
-                        <segue destination="csE-g6-isg" kind="show" id="ukf-Qp-07V"/>
+                        <outlet property="searchDisplayController" destination="riK-l2-hWV" id="VH3-TW-gP0"/>
+                        <segue destination="csE-g6-isg" kind="show" identifier="showingSelectedPlace" id="ukf-Qp-07V"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sie-9D-Xs4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="qku-gg-k8w">
+                <searchDisplayController id="riK-l2-hWV">
                     <connections>
-                        <outlet property="delegate" destination="INo-gq-xhf" id="by9-T0-7fy"/>
-                        <outlet property="searchBar" destination="DxI-kW-HLP" id="J0L-Tm-tyq"/>
-                        <outlet property="searchContentsController" destination="INo-gq-xhf" id="R6q-Pp-fSF"/>
-                        <outlet property="searchResultsDataSource" destination="INo-gq-xhf" id="VSj-BC-12G"/>
-                        <outlet property="searchResultsDelegate" destination="INo-gq-xhf" id="TEP-kI-ba1"/>
+                        <outlet property="delegate" destination="INo-gq-xhf" id="j5m-Eu-ZLj"/>
+                        <outlet property="searchBar" destination="tZO-eY-1Oa" id="Zjt-3d-N1b"/>
+                        <outlet property="searchContentsController" destination="INo-gq-xhf" id="Dsx-VH-Sm1"/>
+                        <outlet property="searchResultsDataSource" destination="INo-gq-xhf" id="qbb-hh-JU8"/>
+                        <outlet property="searchResultsDelegate" destination="INo-gq-xhf" id="v1Q-TO-STJ"/>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1355.625" y="-22.183098591549296"/>
+            <point key="canvasLocation" x="1436" y="-23"/>
         </scene>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="i8k-52-Bnw">
             <objects>
-                <viewController id="iIQ-Yx-kW4" sceneMemberID="viewController">
+                <viewController id="iIQ-Yx-kW4" customClass="PhotoViewController" customModule="Globetrot" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oCT-lK-XBC"/>
                         <viewControllerLayoutGuide type="bottom" id="dnZ-GY-NTC"/>
@@ -107,19 +106,19 @@
                                 <rect key="frame" x="16" y="72" width="288" height="416"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9MI-Gc-zl2">
-                                <rect key="frame" x="25" y="496" width="60" height="60"/>
+                                <rect key="frame" x="25" y="496" width="80" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="3v8-e4-noc"/>
-                                    <constraint firstAttribute="width" constant="60" id="Yru-Wt-Icc"/>
+                                    <constraint firstAttribute="width" constant="80" id="Yru-Wt-Icc"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="cameraIcon"/>
+                                <state key="normal" image="cameraIcon"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Jl-q9-Afi">
-                                <rect key="frame" x="235" y="496" width="60" height="60"/>
+                                <rect key="frame" x="214" y="496" width="81" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="Mtv-dY-LOf"/>
+                                    <constraint firstAttribute="width" constant="81" id="Mtv-dY-LOf"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="libraryIcon"/>
+                                <state key="normal" image="libraryIcon"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -135,14 +134,18 @@
                             <constraint firstAttribute="trailingMargin" secondItem="1Jl-q9-Afi" secondAttribute="trailing" constant="9" id="iMk-53-CWM"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="qwP-eR-kV8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="pNu-ua-Q0w"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A08-hf-zOq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2511.594202898551" y="766.304347826087"/>
+            <point key="canvasLocation" x="2510.625" y="765.84507042253517"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r2y-n7-KZJ">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B63-kB-L7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LED-yg-io9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JOh-wG-1zc">
@@ -154,14 +157,13 @@
                         <segue destination="INo-gq-xhf" kind="relationship" relationship="rootViewController" id="wVS-gg-SBP"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B63-kB-L7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="644" y="-21.139430284857571"/>
         </scene>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="aeQ-Pw-H7O">
             <objects>
-                <viewController id="v3f-P7-wPG" sceneMemberID="viewController">
+                <viewController id="v3f-P7-wPG" customClass="NewPlaceExtraViewController" customModule="Globetrot" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mdg-vH-Rab"/>
                         <viewControllerLayoutGuide type="bottom" id="fka-0d-pW8"/>
@@ -188,6 +190,9 @@
                                     <constraint firstAttribute="width" constant="273" id="5Up-Y0-Ju5"/>
                                 </constraints>
                                 <state key="normal" title="Let's take a picture to remember!   &gt;"/>
+                                <connections>
+                                    <action selector="goToPhotosTapped:" destination="v3f-P7-wPG" eventType="touchUpInside" id="yq8-C3-xmU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -199,21 +204,28 @@
                             <constraint firstItem="a9c-Jc-bvo" firstAttribute="centerX" secondItem="hY3-Sx-1x8" secondAttribute="centerX" id="egQ-wc-k3Z"/>
                             <constraint firstItem="yfL-rM-aLb" firstAttribute="top" secondItem="lbl-wI-dIJ" secondAttribute="bottom" constant="21" id="fzS-nQ-LT4"/>
                             <constraint firstItem="yfL-rM-aLb" firstAttribute="leading" secondItem="hY3-Sx-1x8" secondAttribute="leadingMargin" id="pJz-ra-dFI"/>
-                            <constraint firstItem="a9c-Jc-bvo" firstAttribute="top" secondItem="yfL-rM-aLb" secondAttribute="bottom" constant="27" id="xuO-xd-mpU"/>
+                            <constraint firstItem="a9c-Jc-bvo" firstAttribute="top" secondItem="yfL-rM-aLb" secondAttribute="bottom" constant="27" id="xuO-xd-mpU">
+                                <variation key="heightClass=compact" constant="8"/>
+                            </constraint>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="Vdo-ps-SkX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7Lv-Il-LzM"/>
+                    </navigationItem>
                     <connections>
-                        <segue destination="iIQ-Yx-kW4" kind="show" id="hMg-Fj-WAg"/>
+                        <outlet property="goToPhoto" destination="a9c-Jc-bvo" id="4Ov-qw-9fV"/>
+                        <outlet property="textView2" destination="yfL-rM-aLb" id="DFX-7v-zFE"/>
+                        <segue destination="iIQ-Yx-kW4" kind="show" identifier="goToPhoto" id="hMg-Fj-WAg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gRE-zQ-Pxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1721" y="768"/>
         </scene>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="5hC-Tm-pF3">
             <objects>
-                <viewController id="csE-g6-isg" sceneMemberID="viewController">
+                <viewController id="csE-g6-isg" customClass="NewPlaceViewController" customModule="Globetrot" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EPV-np-l9o"/>
                         <viewControllerLayoutGuide type="bottom" id="gU1-Lb-mz8"/>
@@ -240,23 +252,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BZf-Om-YLB">
-                                <rect key="frame" x="16" y="169" width="288" height="323"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6s-mK-G75">
                                 <rect key="frame" x="58" y="518" width="204" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="204" id="PbN-mv-r5H"/>
                                 </constraints>
                                 <state key="normal" title="What else?    &gt;"/>
+                                <connections>
+                                    <action selector="goToExtraNotesTapped:" destination="csE-g6-isg" eventType="touchUpInside" id="NfX-m3-7h9"/>
+                                </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BZf-Om-YLB">
+                                <rect key="frame" x="16" y="169" width="288" height="332"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="l6s-mK-G75" firstAttribute="top" secondItem="BZf-Om-YLB" secondAttribute="bottom" constant="26" id="07R-bT-yfz"/>
+                            <constraint firstItem="l6s-mK-G75" firstAttribute="top" secondItem="BZf-Om-YLB" secondAttribute="bottom" constant="17" id="07R-bT-yfz"/>
                             <constraint firstItem="9ZR-tM-wFG" firstAttribute="top" secondItem="EPV-np-l9o" secondAttribute="bottom" constant="18" id="6rx-GU-sJS"/>
                             <constraint firstItem="9ZR-tM-wFG" firstAttribute="leading" secondItem="Tic-dz-TAb" secondAttribute="trailing" constant="17" id="Gqq-We-1RG"/>
                             <constraint firstAttribute="leadingMargin" secondItem="BZf-Om-YLB" secondAttribute="leading" id="JPX-W2-ubP"/>
@@ -272,13 +287,19 @@
                             <constraint firstAttribute="trailingMargin" secondItem="9ZR-tM-wFG" secondAttribute="trailing" id="yWJ-ni-0uT"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="b04-uq-MaQ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="hgH-x3-DMd"/>
+                    </navigationItem>
                     <connections>
-                        <segue destination="v3f-P7-wPG" kind="show" id="cGh-jr-dz4"/>
+                        <outlet property="goToExtraNotes" destination="l6s-mK-G75" id="MWa-ka-Hkz"/>
+                        <outlet property="textView1" destination="BZf-Om-YLB" id="748-He-hMA"/>
+                        <outlet property="wherePlace" destination="9ZR-tM-wFG" id="9iD-4b-Uxb"/>
+                        <segue destination="v3f-P7-wPG" kind="show" identifier="goToExtra" id="cGh-jr-dz4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8h-Ja-JKt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2206" y="-23"/>
+            <point key="canvasLocation" x="2205" y="-23.239436619718312"/>
         </scene>
     </scenes>
     <resources>

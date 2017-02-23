@@ -15,6 +15,7 @@ class MyPlacesTableViewController: UITableViewController {
         
         navigationController?.navigationBar.barTintColor = UIColor.orange
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.tintColor = UIColor.white
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -95,4 +96,7 @@ class MyPlacesTableViewController: UITableViewController {
     }
     */
 
+    @IBAction func addPlaceTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "showingSelectedPlace", sender: self)
+    }
 }
