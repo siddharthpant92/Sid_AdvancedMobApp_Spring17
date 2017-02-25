@@ -276,7 +276,7 @@
 				DEVELOPMENT_TEAM = 32C86W6J58;
 				INFOPLIST_FILE = Globetrot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Siddharth.Globetrot;
+				PRODUCT_BUNDLE_IDENTIFIER = Siddharth.Globetrotter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -289,7 +289,7 @@
 				DEVELOPMENT_TEAM = 32C86W6J58;
 				INFOPLIST_FILE = Globetrot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Siddharth.Globetrot;
+				PRODUCT_BUNDLE_IDENTIFIER = Siddharth.Globetrotter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

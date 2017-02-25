@@ -14,6 +14,8 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
     @IBOutlet weak var textView1: UITextView!
     @IBOutlet weak var wherePlace: UITextField!
     
+    var newOrExisting = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +36,10 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func viewDidAppear(_ animated: Bool) {
+        print(newOrExisting)
+    }
+    
     /*
     // MARK: - Navigation
 

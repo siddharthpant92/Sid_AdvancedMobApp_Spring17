@@ -10,6 +10,9 @@ import UIKit
 
 class MyPlacesTableViewController: UITableViewController {
 
+    // Decider variable. Based on its value, either existing data is shown or no data is shown
+    var newOrExisting = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +31,12 @@ class MyPlacesTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+ 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        newOrExisting = ""
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -41,6 +49,11 @@ class MyPlacesTableViewController: UITableViewController {
         return 0
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        newOrExisting = "existing"
+        self.performSegue(withIdentifier: "myPlaceToNewPlace", sender: self)
+    }
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -97,6 +110,23 @@ class MyPlacesTableViewController: UITableViewController {
     */
 
     @IBAction func addPlaceTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "showingSelectedPlace", sender: self)
+        newOrExisting = "new"
+        self.performSegue(withIdentifier: "myPlaceToNewPlace", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let destinationVC = segue.destination as! NewPlaceViewController
+        
+        if(newOrExisting == "existing")
+        {
+            //HAVE TO PASS CORRESPONDING DATA FOR THAT CELL. REALM OBJECT[[indexPath.row]????
+            destinationVC.newOrExisting = "existing"
+        }
+        else
+        {
+            destinationVC.newOrExisting = "new"
+        }
+    }
+    
 }

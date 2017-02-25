@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8tM-hM-Ftx" id="qCt-mB-bt0">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MH8-ue-xxv">
@@ -74,7 +74,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="riK-l2-hWV" id="VH3-TW-gP0"/>
-                        <segue destination="csE-g6-isg" kind="show" identifier="showingSelectedPlace" id="ukf-Qp-07V"/>
+                        <segue destination="csE-g6-isg" kind="show" identifier="myPlaceToNewPlace" id="ukf-Qp-07V"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sie-9D-Xs4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -145,7 +145,6 @@
         <!--Navigation Controller-->
         <scene sceneID="r2y-n7-KZJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B63-kB-L7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LED-yg-io9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JOh-wG-1zc">
@@ -157,6 +156,7 @@
                         <segue destination="INo-gq-xhf" kind="relationship" relationship="rootViewController" id="wVS-gg-SBP"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B63-kB-L7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="644" y="-21.139430284857571"/>
         </scene>
@@ -215,7 +215,7 @@
                     <connections>
                         <outlet property="goToPhoto" destination="a9c-Jc-bvo" id="4Ov-qw-9fV"/>
                         <outlet property="textView2" destination="yfL-rM-aLb" id="DFX-7v-zFE"/>
-                        <segue destination="iIQ-Yx-kW4" kind="show" identifier="goToPhoto" id="hMg-Fj-WAg"/>
+                        <segue destination="iIQ-Yx-kW4" kind="show" identifier="extraToPhoto" id="hMg-Fj-WAg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gRE-zQ-Pxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -294,7 +294,7 @@
                         <outlet property="goToExtraNotes" destination="l6s-mK-G75" id="MWa-ka-Hkz"/>
                         <outlet property="textView1" destination="BZf-Om-YLB" id="748-He-hMA"/>
                         <outlet property="wherePlace" destination="9ZR-tM-wFG" id="9iD-4b-Uxb"/>
-                        <segue destination="v3f-P7-wPG" kind="show" identifier="goToExtra" id="cGh-jr-dz4"/>
+                        <segue destination="v3f-P7-wPG" kind="show" identifier="newPlaceToExtra" id="cGh-jr-dz4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8h-Ja-JKt" userLabel="First Responder" sceneMemberID="firstResponder"/>
