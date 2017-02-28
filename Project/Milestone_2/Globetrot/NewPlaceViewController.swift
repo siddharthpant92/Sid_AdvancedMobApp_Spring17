@@ -52,7 +52,7 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
     
     
     @IBAction func goToExtraNotesTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "goToExtra", sender: self)
+        self.performSegue(withIdentifier: "newPlaceToExtra", sender: self)
     }
     
     //Hides the keyboard on pressing return key

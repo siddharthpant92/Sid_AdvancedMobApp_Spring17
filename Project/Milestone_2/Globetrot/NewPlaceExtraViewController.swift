@@ -41,7 +41,7 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
     */
     
     @IBAction func goToPhotosTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "goToPhoto", sender: self)
+        self.performSegue(withIdentifier: "extraToPhoto", sender: self)
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
