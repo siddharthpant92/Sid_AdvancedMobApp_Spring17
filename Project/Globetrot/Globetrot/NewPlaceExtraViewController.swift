@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var goToPhoto: UIButton!
     @IBOutlet weak var textView2: UITextView!
+    
+    var newPlace = Places()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +44,7 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
     */
     
     @IBAction func goToPhotosTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "goToPhoto", sender: self)
+        self.performSegue(withIdentifier: "extraToPhoto", sender: self)
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

@@ -7,9 +7,18 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyPlacesTableViewController: UITableViewController {
 
+    // Decider variable. Based on its value, either existing data is shown or no data is shown
+    // True indicates new place, false indicates existing place
+    var new = Bool()
+    
+    var allPlaces = realm.objects(Places.self)
+    
+    var selectedPlace: Places?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,34 +31,50 @@ class MyPlacesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        refresh()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+ 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        refresh()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return allPlaces.count
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        cell.textLabel?.text = allPlaces[indexPath.row].placeName
+        cell.imageView?.image = UIImage(named: "cameraIcon")
+        
         return cell
     }
-    */
+
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        new = false
+        selectedPlace = allPlaces[indexPath.row] //To pass on the selected object
+        self.performSegue(withIdentifier: "myPlaceToNewPlace", sender: self)
+    }
+    
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -59,17 +84,19 @@ class MyPlacesTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            try! realm.write {
+                realm.delete(allPlaces[indexPath.row])
+            }
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.
@@ -97,6 +124,29 @@ class MyPlacesTableViewController: UITableViewController {
     */
 
     @IBAction func addPlaceTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "showingSelectedPlace", sender: self)
+        new = true
+        self.performSegue(withIdentifier: "myPlaceToNewPlace", sender: self)
     }
+    
+    func refresh()
+    {
+        allPlaces = realm.objects(Places.self)
+        tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let destinationVC = segue.destination as! NewPlaceViewController
+        
+        if(new == true)
+        {
+            destinationVC.new = true
+        }
+        else
+        {
+            destinationVC.new = false
+            destinationVC.place = selectedPlace!
+        }
+    }
+    
 }

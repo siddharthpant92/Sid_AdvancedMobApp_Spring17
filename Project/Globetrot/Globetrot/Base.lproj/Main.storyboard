@@ -34,26 +34,26 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MH8-ue-xxv">
-                                            <rect key="frame" x="8" y="0.0" width="43" height="43"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="43" id="2Bz-5z-9rv"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSi-Qy-qlP">
-                                            <rect key="frame" x="59" y="8" width="220" height="27"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSi-Qy-qlP">
+                                            <rect key="frame" x="59" y="8" width="220" height="28"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MH8-ue-xxv">
+                                            <rect key="frame" x="13" y="3" width="38" height="38"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="38" id="2Bz-5z-9rv"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="MH8-ue-xxv" secondAttribute="bottom" id="akW-md-7sD"/>
+                                        <constraint firstAttribute="bottom" secondItem="MH8-ue-xxv" secondAttribute="bottom" constant="2.5" id="akW-md-7sD"/>
                                         <constraint firstItem="jSi-Qy-qlP" firstAttribute="leading" secondItem="MH8-ue-xxv" secondAttribute="trailing" constant="8" symbolic="YES" id="bq2-3P-VOo"/>
-                                        <constraint firstItem="MH8-ue-xxv" firstAttribute="leading" secondItem="qCt-mB-bt0" secondAttribute="leadingMargin" id="cbX-ha-TVT"/>
+                                        <constraint firstItem="MH8-ue-xxv" firstAttribute="leading" secondItem="qCt-mB-bt0" secondAttribute="leadingMargin" constant="5" id="cbX-ha-TVT"/>
                                         <constraint firstItem="jSi-Qy-qlP" firstAttribute="trailing" secondItem="qCt-mB-bt0" secondAttribute="trailingMargin" id="eQ5-6C-3Ub"/>
                                         <constraint firstItem="MH8-ue-xxv" firstAttribute="centerY" secondItem="jSi-Qy-qlP" secondAttribute="centerY" id="elm-2Q-m4l"/>
-                                        <constraint firstItem="MH8-ue-xxv" firstAttribute="top" secondItem="qCt-mB-bt0" secondAttribute="top" id="rgT-XU-eK7"/>
+                                        <constraint firstItem="MH8-ue-xxv" firstAttribute="top" secondItem="qCt-mB-bt0" secondAttribute="top" constant="3" id="rgT-XU-eK7"/>
                                         <constraint firstItem="jSi-Qy-qlP" firstAttribute="top" secondItem="qCt-mB-bt0" secondAttribute="topMargin" id="tiD-Eq-alg"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -74,7 +74,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="riK-l2-hWV" id="VH3-TW-gP0"/>
-                        <segue destination="csE-g6-isg" kind="show" identifier="showingSelectedPlace" id="ukf-Qp-07V"/>
+                        <segue destination="csE-g6-isg" kind="show" identifier="myPlaceToNewPlace" id="ukf-Qp-07V"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sie-9D-Xs4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -88,7 +88,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1436" y="-23"/>
+            <point key="canvasLocation" x="1434.375" y="-23.239436619718312"/>
         </scene>
         <!--Title-->
         <scene sceneID="i8k-52-Bnw">
@@ -215,7 +215,7 @@
                     <connections>
                         <outlet property="goToPhoto" destination="a9c-Jc-bvo" id="4Ov-qw-9fV"/>
                         <outlet property="textView2" destination="yfL-rM-aLb" id="DFX-7v-zFE"/>
-                        <segue destination="iIQ-Yx-kW4" kind="show" identifier="goToPhoto" id="hMg-Fj-WAg"/>
+                        <segue destination="iIQ-Yx-kW4" kind="show" identifier="extraToPhoto" id="hMg-Fj-WAg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gRE-zQ-Pxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -288,13 +288,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="b04-uq-MaQ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="hgH-x3-DMd"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="hgH-x3-DMd">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="csE-g6-isg" id="2Ow-2i-ifp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="goToExtraNotes" destination="l6s-mK-G75" id="MWa-ka-Hkz"/>
-                        <outlet property="textView1" destination="BZf-Om-YLB" id="748-He-hMA"/>
-                        <outlet property="wherePlace" destination="9ZR-tM-wFG" id="9iD-4b-Uxb"/>
-                        <segue destination="v3f-P7-wPG" kind="show" identifier="goToExtra" id="cGh-jr-dz4"/>
+                        <outlet property="mainNotes" destination="BZf-Om-YLB" id="yQe-ua-0xQ"/>
+                        <outlet property="placeName" destination="9ZR-tM-wFG" id="Gf8-Vk-3Ze"/>
+                        <segue destination="v3f-P7-wPG" kind="show" identifier="newPlaceToExtra" id="cGh-jr-dz4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8h-Ja-JKt" userLabel="First Responder" sceneMemberID="firstResponder"/>
