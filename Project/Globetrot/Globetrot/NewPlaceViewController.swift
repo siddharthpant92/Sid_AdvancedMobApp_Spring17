@@ -15,9 +15,8 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
     @IBOutlet weak var mainNotes: UITextView!
     @IBOutlet weak var placeName: UITextField!
     
-    var new = Bool()// true indicates new place, false indicates existing place
-    
     var place = Places()
+    var saveTapped = Bool() //To check whether save button was tapped or not
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,79 +28,32 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
         
         mainNotes.delegate = self
         placeName.delegate = self
-        
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         
-        if(new == false)
-        {
-            placeName.text = place.placeName
-            mainNotes.text = place.mainNotes
-        }
+        //Unless the user taps save button, every other time it should be false
+        saveTapped = false
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         
-        if(new == false)
-        {
-            editPlace()
-        }
-        else
-        {
-            addPlace()
-        }
-    }
+        saveTapped = true
 
-    @IBAction func goToExtraNotesTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "newPlaceToExtra", sender: self)
-    }
-    
-    func editPlace()
-    {
-        //re-writing the values. Updation has to happen inside a write block only
-        try! realm.write {
-            place.placeName = placeName.text!
-            place.mainNotes = mainNotes.text!
-        }
-        showSavedAlert()
-    }
-    
-    func addPlace()
-    {
         place.placeName = placeName.text!
         place.mainNotes = mainNotes.text!
         place.extraNotes = ""
-        place.placeImageName = ""
+        place.image = nil
         
         try! realm.write {
             realm.add(place)
         }
-        showSavedAlert()
-    }
-    
-    func showSavedAlert()
-    {
-        //function to let user know that their information has been saved.
+        
         let savedAlert = UIAlertController(title: "Saved", message: nil, preferredStyle: .alert)
         present(savedAlert, animated: true, completion: nil)
         let when = DispatchTime.now() + 1
@@ -109,7 +61,15 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
             // your code with delay
             savedAlert.dismiss(animated: true, completion: nil)
         }
+        //Waiting for navigation stack to be updated
+        sleep(1)
     }
+
+    
+    @IBAction func goToExtraNotesTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "add_newPlaceToExtra", sender: self)
+    }
+    
     
     //Hides the keyboard on pressing return key
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -125,4 +85,19 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
         return true
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        let destinationVC = segue.destination as! NewPlaceExtraViewController
+        destinationVC.place = place
+        if(saveTapped == false)
+        {
+            destinationVC.placeName = placeName.text!
+            destinationVC.mainNotes = mainNotes.text!
+            destinationVC.alreadySaved = false
+        }
+        else
+        {
+            destinationVC.alreadySaved = true
+        }
+    }
 }

@@ -13,7 +13,7 @@
 		1F0CE42E1E592F7300B237EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F0CE42C1E592F7300B237EC /* LaunchScreen.storyboard */; };
 		1F10DB761E5EB13000591274 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10DB751E5EB13000591274 /* NewPlaceViewController.swift */; };
 		1F10DB781E5EB59D00591274 /* NewPlaceExtraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10DB771E5EB59D00591274 /* NewPlaceExtraViewController.swift */; };
-		1F10DB7A1E5EB5B400591274 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10DB791E5EB5B400591274 /* PhotoViewController.swift */; };
+		1F10DB7A1E5EB5B400591274 /* NewPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10DB791E5EB5B400591274 /* NewPhotoViewController.swift */; };
 		1F3F74771E593D8800AD6F51 /* MyPlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3F74761E593D8800AD6F51 /* MyPlacesTableViewController.swift */; };
 		1FB337C21E663A9B0019CB91 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB337C11E663A9B0019CB91 /* Places.swift */; };
 		AF2F6FF331BB4F7A750B11F6 /* Pods_Globetrot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1A640F541CD6C01FF056EB /* Pods_Globetrot.framework */; };
@@ -29,7 +29,7 @@
 		1F0CE42F1E592F7300B237EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F10DB751E5EB13000591274 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
 		1F10DB771E5EB59D00591274 /* NewPlaceExtraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPlaceExtraViewController.swift; sourceTree = "<group>"; };
-		1F10DB791E5EB5B400591274 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		1F10DB791E5EB5B400591274 /* NewPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPhotoViewController.swift; sourceTree = "<group>"; };
 		1F3F74761E593D8800AD6F51 /* MyPlacesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPlacesTableViewController.swift; sourceTree = "<group>"; };
 		1FB337C11E663A9B0019CB91 /* Places.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
 		85A1437E0BE30DF025CA4FB9 /* Pods-Globetrot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Globetrot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Globetrot/Pods-Globetrot.debug.xcconfig"; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 				1F3F74761E593D8800AD6F51 /* MyPlacesTableViewController.swift */,
 				1F10DB751E5EB13000591274 /* NewPlaceViewController.swift */,
 				1F10DB771E5EB59D00591274 /* NewPlaceExtraViewController.swift */,
-				1F10DB791E5EB5B400591274 /* PhotoViewController.swift */,
+				1F10DB791E5EB5B400591274 /* NewPhotoViewController.swift */,
 				1FB337C11E663A9B0019CB91 /* Places.swift */,
 				1F0CE42A1E592F7300B237EC /* Assets.xcassets */,
 				1F0CE42C1E592F7300B237EC /* LaunchScreen.storyboard */,
@@ -228,7 +228,7 @@
 				1F10DB761E5EB13000591274 /* NewPlaceViewController.swift in Sources */,
 				1F10DB781E5EB59D00591274 /* NewPlaceExtraViewController.swift in Sources */,
 				1F3F74771E593D8800AD6F51 /* MyPlacesTableViewController.swift in Sources */,
-				1F10DB7A1E5EB5B400591274 /* PhotoViewController.swift in Sources */,
+				1F10DB7A1E5EB5B400591274 /* NewPhotoViewController.swift in Sources */,
 				1FB337C21E663A9B0019CB91 /* Places.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

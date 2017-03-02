@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8tM-hM-Ftx" id="qCt-mB-bt0">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSi-Qy-qlP">
@@ -41,19 +41,19 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MH8-ue-xxv">
-                                            <rect key="frame" x="13" y="3" width="38" height="38"/>
+                                            <rect key="frame" x="8" y="8" width="27" height="27"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="38" id="2Bz-5z-9rv"/>
+                                                <constraint firstAttribute="width" constant="27" id="2Bz-5z-9rv"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="MH8-ue-xxv" secondAttribute="bottom" constant="2.5" id="akW-md-7sD"/>
-                                        <constraint firstItem="jSi-Qy-qlP" firstAttribute="leading" secondItem="MH8-ue-xxv" secondAttribute="trailing" constant="8" symbolic="YES" id="bq2-3P-VOo"/>
-                                        <constraint firstItem="MH8-ue-xxv" firstAttribute="leading" secondItem="qCt-mB-bt0" secondAttribute="leadingMargin" constant="5" id="cbX-ha-TVT"/>
+                                        <constraint firstAttribute="bottom" secondItem="MH8-ue-xxv" secondAttribute="bottom" constant="8" id="akW-md-7sD"/>
+                                        <constraint firstItem="jSi-Qy-qlP" firstAttribute="leading" secondItem="MH8-ue-xxv" secondAttribute="trailing" constant="24" id="bq2-3P-VOo"/>
+                                        <constraint firstItem="MH8-ue-xxv" firstAttribute="leading" secondItem="qCt-mB-bt0" secondAttribute="leadingMargin" id="cbX-ha-TVT"/>
                                         <constraint firstItem="jSi-Qy-qlP" firstAttribute="trailing" secondItem="qCt-mB-bt0" secondAttribute="trailingMargin" id="eQ5-6C-3Ub"/>
                                         <constraint firstItem="MH8-ue-xxv" firstAttribute="centerY" secondItem="jSi-Qy-qlP" secondAttribute="centerY" id="elm-2Q-m4l"/>
-                                        <constraint firstItem="MH8-ue-xxv" firstAttribute="top" secondItem="qCt-mB-bt0" secondAttribute="top" constant="3" id="rgT-XU-eK7"/>
+                                        <constraint firstItem="MH8-ue-xxv" firstAttribute="top" secondItem="qCt-mB-bt0" secondAttribute="top" constant="8" id="rgT-XU-eK7"/>
                                         <constraint firstItem="jSi-Qy-qlP" firstAttribute="top" secondItem="qCt-mB-bt0" secondAttribute="topMargin" id="tiD-Eq-alg"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -74,7 +74,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="riK-l2-hWV" id="VH3-TW-gP0"/>
-                        <segue destination="csE-g6-isg" kind="show" identifier="myPlaceToNewPlace" id="ukf-Qp-07V"/>
+                        <segue destination="csE-g6-isg" kind="show" identifier="add_myPlaceToNewPlace" id="ukf-Qp-07V"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sie-9D-Xs4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -93,7 +93,7 @@
         <!--Title-->
         <scene sceneID="i8k-52-Bnw">
             <objects>
-                <viewController id="iIQ-Yx-kW4" customClass="PhotoViewController" customModule="Globetrot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iIQ-Yx-kW4" customClass="NewPhotoViewController" customModule="Globetrot" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oCT-lK-XBC"/>
                         <viewControllerLayoutGuide type="bottom" id="dnZ-GY-NTC"/>
@@ -112,6 +112,9 @@
                                     <constraint firstAttribute="width" constant="80" id="Yru-Wt-Icc"/>
                                 </constraints>
                                 <state key="normal" image="cameraIcon"/>
+                                <connections>
+                                    <action selector="cameraButtonTapped:" destination="iIQ-Yx-kW4" eventType="touchUpInside" id="W8b-fV-Lp8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Jl-q9-Afi">
                                 <rect key="frame" x="214" y="496" width="81" height="60"/>
@@ -119,6 +122,9 @@
                                     <constraint firstAttribute="width" constant="81" id="Mtv-dY-LOf"/>
                                 </constraints>
                                 <state key="normal" image="libraryIcon"/>
+                                <connections>
+                                    <action selector="libraryButtonTapped:" destination="iIQ-Yx-kW4" eventType="touchUpInside" id="gM1-if-3DW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -135,10 +141,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="qwP-eR-kV8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="pNu-ua-Q0w"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="pNu-ua-Q0w">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="iIQ-Yx-kW4" id="bPi-Pt-JiP"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="placeImageView" destination="woK-iz-SlQ" id="hBB-G2-mQP"/>
+                        <segue destination="Cca-E4-Zfl" kind="unwind" identifier="newPhotoToMyPlaces" unwindAction="backToMyPlacesWithSegue:" id="jGh-Sd-hX7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A08-hf-zOq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Cca-E4-Zfl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2510.625" y="765.84507042253517"/>
         </scene>
@@ -210,12 +225,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Vdo-ps-SkX">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7Lv-Il-LzM"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7Lv-Il-LzM">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="v3f-P7-wPG" id="i7T-bX-nH2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="extraNotes" destination="yfL-rM-aLb" id="hED-5o-PLv"/>
                         <outlet property="goToPhoto" destination="a9c-Jc-bvo" id="4Ov-qw-9fV"/>
-                        <outlet property="textView2" destination="yfL-rM-aLb" id="DFX-7v-zFE"/>
-                        <segue destination="iIQ-Yx-kW4" kind="show" identifier="extraToPhoto" id="hMg-Fj-WAg"/>
+                        <segue destination="iIQ-Yx-kW4" kind="show" identifier="add_extraToPhoto" id="hMg-Fj-WAg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gRE-zQ-Pxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -298,7 +317,7 @@
                         <outlet property="goToExtraNotes" destination="l6s-mK-G75" id="MWa-ka-Hkz"/>
                         <outlet property="mainNotes" destination="BZf-Om-YLB" id="yQe-ua-0xQ"/>
                         <outlet property="placeName" destination="9ZR-tM-wFG" id="Gf8-Vk-3Ze"/>
-                        <segue destination="v3f-P7-wPG" kind="show" identifier="newPlaceToExtra" id="cGh-jr-dz4"/>
+                        <segue destination="v3f-P7-wPG" kind="show" identifier="add_newPlaceToExtra" id="cGh-jr-dz4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8h-Ja-JKt" userLabel="First Responder" sceneMemberID="firstResponder"/>

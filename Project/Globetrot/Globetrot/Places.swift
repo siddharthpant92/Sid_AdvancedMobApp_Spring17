@@ -14,6 +14,6 @@ class Places: Object
     dynamic var placeName = String()
     dynamic var mainNotes = String()
     dynamic var extraNotes = String()
-    dynamic var placeImageName = String()
+    dynamic var image: NSData? = nil
 }
 

@@ -12,8 +12,6 @@ import RealmSwift
 class MyPlacesTableViewController: UITableViewController {
 
     // Decider variable. Based on its value, either existing data is shown or no data is shown
-    // True indicates new place, false indicates existing place
-    var new = Bool()
     
     var allPlaces = realm.objects(Places.self)
     
@@ -62,28 +60,18 @@ class MyPlacesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         cell.textLabel?.text = allPlaces[indexPath.row].placeName
-        cell.imageView?.image = UIImage(named: "cameraIcon")
+        cell.imageView?.image = UIImage(data: allPlaces[indexPath.row].image as! Data)
         
         return cell
     }
 
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        new = false
-        selectedPlace = allPlaces[indexPath.row] //To pass on the selected object
-        self.performSegue(withIdentifier: "myPlaceToNewPlace", sender: self)
-    }
-    
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        new = false
+//        selectedPlace = allPlaces[indexPath.row] //To pass on the selected object
+//        self.performSegue(withIdentifier: "myPlaceToNewPlace", sender: self)
+//    }
+//    
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -98,6 +86,10 @@ class MyPlacesTableViewController: UITableViewController {
         }    
     }
 
+    
+    @IBAction func backToMyPlaces(segue: UIStoryboardSegue)
+    {}
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
@@ -124,8 +116,7 @@ class MyPlacesTableViewController: UITableViewController {
     */
 
     @IBAction func addPlaceTapped(_ sender: Any) {
-        new = true
-        self.performSegue(withIdentifier: "myPlaceToNewPlace", sender: self)
+        self.performSegue(withIdentifier: "add_myPlaceToNewPlace", sender: self)
     }
     
     func refresh()
@@ -135,18 +126,5 @@ class MyPlacesTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        let destinationVC = segue.destination as! NewPlaceViewController
-        
-        if(new == true)
-        {
-            destinationVC.new = true
-        }
-        else
-        {
-            destinationVC.new = false
-            destinationVC.place = selectedPlace!
-        }
     }
-    
 }
