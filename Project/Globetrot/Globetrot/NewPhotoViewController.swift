@@ -18,7 +18,6 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     var placeName = String()//To store the name of place if not saved before
     var mainNotes = String()//To store the main notes if not saved before
     var extraNotes = String()//To store the extra notes if not saved before
-    var alreadySaved = Bool()
     
     let picker = UIImagePickerController()
     var documentDirectory = String()
@@ -29,6 +28,24 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
         
         picker.delegate = self
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        if(place.image != nil)
+        {
+            placeImageView.image = UIImage(data: place.image as! Data)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        print()
+        print("photo = \(alreadySaved)")
+        print()
 
     }
     
@@ -87,6 +104,7 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         {
             self.imageName = NSURL.fileURL(withPath: NSTemporaryDirectory() + place.placeName+"Image").lastPathComponent
         }
+        
         if(alreadySaved == false)
         {
             place.placeName = placeName
@@ -103,8 +121,15 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
             //Editing the existing object
             try! realm.write {
                 place.image = data as NSData?
+                place.extraNotes = extraNotes
+                place.placeName = placeName
+                place.mainNotes = mainNotes
+
             }
         }
+        
+        alreadySaved = true
+        print(place)
 
         let savedAlert = UIAlertController(title: "Saved", message: nil, preferredStyle: .alert)
         present(savedAlert, animated: true, completion: nil)

@@ -18,7 +18,7 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
     var saveTapped = Bool() //To check if save button was tapped
     var placeName = String() //To store the place name if not saved before
     var mainNotes = String()//To store the main notes if not saved before
-    var alreadySaved = Bool() //To check if information has already been saved
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,15 +35,29 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
         super.didReceiveMemoryWarning()        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+ 
+        if(place.extraNotes != "")
+        {
+            extraNotes.text = place.extraNotes
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         saveTapped = false
+        
+        print()
+        print("extra = \(alreadySaved)")
+        print()
+
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         
         saveTapped = true
-
+       
         if(alreadySaved == false)
         {
             place.placeName = placeName
@@ -60,10 +74,12 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
             try! realm.write {
                 //Editing the existing object
                 place.extraNotes = extraNotes.text!
+                place.placeName = placeName
+                place.mainNotes = mainNotes
             }
         }
         
-        
+        alreadySaved = true
         
         let savedAlert = UIAlertController(title: "Saved", message: nil, preferredStyle: .alert)
         present(savedAlert, animated: true, completion: nil)
@@ -95,21 +111,11 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
         
         let destinationVC = segue.destination as! NewPhotoViewController
         destinationVC.place = place
-        if(saveTapped == false)
-        {
+//        if(saveTapped == false)
+//        {
             destinationVC.placeName = placeName
             destinationVC.mainNotes = mainNotes
             destinationVC.extraNotes = extraNotes.text!
-        }
-        
-        //If it was saved previously or now, it should always be true as the same object has to be updated
-        if(alreadySaved == true || saveTapped == true)
-        {
-            destinationVC.alreadySaved = true
-        }
-        else
-        {
-            destinationVC.alreadySaved = false
-        }
+//        }
     }
 }

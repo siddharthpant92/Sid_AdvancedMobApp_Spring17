@@ -9,6 +9,8 @@
 import UIKit
 import RealmSwift
 
+var alreadySaved: Bool = false //To check if information has already been saved once
+
 class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var goToExtraNotes: UIButton!
@@ -34,26 +36,53 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+     
+        //Displaying information if user had entered something while adding a new place and then comes back to this screen
+        if(place.placeName != "")
+        {
+            placeName.text = place.placeName
+        }
+        if(place.mainNotes != "")
+        {
+            mainNotes.text = place.mainNotes
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
         //Unless the user taps save button, every other time it should be false
         saveTapped = false
+        
+        print()
+        print("new place = \(alreadySaved)")
+        print()
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         
         saveTapped = true
-
-        place.placeName = placeName.text!
-        place.mainNotes = mainNotes.text!
-        place.extraNotes = ""
-        place.image = nil
         
-        try! realm.write {
-            realm.add(place)
+        if(alreadySaved == true)
+        {   //If the user goes to next screen, clicks save and then comes back here
+            try! realm.write {
+                place.placeName = placeName.text!
+                place.mainNotes = mainNotes.text!
+            }
+        }        
+        else
+        {
+            place.placeName = placeName.text!
+            place.mainNotes = mainNotes.text!
+            
+            try! realm.write {
+                realm.add(place)
+            }
         }
         
+        alreadySaved = true
+
         let savedAlert = UIAlertController(title: "Saved", message: nil, preferredStyle: .alert)
         present(savedAlert, animated: true, completion: nil)
         let when = DispatchTime.now() + 1
@@ -89,15 +118,10 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
 
         let destinationVC = segue.destination as! NewPlaceExtraViewController
         destinationVC.place = place
-        if(saveTapped == false)
-        {
+//        if(saveTapped == false)
+//        {
             destinationVC.placeName = placeName.text!
             destinationVC.mainNotes = mainNotes.text!
-            destinationVC.alreadySaved = false
-        }
-        else
-        {
-            destinationVC.alreadySaved = true
-        }
+        //}
     }
 }

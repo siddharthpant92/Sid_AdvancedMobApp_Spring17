@@ -42,6 +42,13 @@ class MyPlacesTableViewController: UITableViewController {
         super.viewDidAppear(true)
         
         refresh()
+        
+        print()
+        print()
+        print(allPlaces.count)
+        print(allPlaces)
+        print()
+        print()
     }
     
     // MARK: - Table view data source
@@ -60,8 +67,10 @@ class MyPlacesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         cell.textLabel?.text = allPlaces[indexPath.row].placeName
-        cell.imageView?.image = UIImage(data: allPlaces[indexPath.row].image as! Data)
-        
+        if(allPlaces[indexPath.row].image != nil)
+        {
+            cell.imageView?.image = UIImage(data: allPlaces[indexPath.row].image as! Data)
+        }
         return cell
     }
 
@@ -126,5 +135,9 @@ class MyPlacesTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "add_myPlaceToNewPlace")
+        {
+            alreadySaved = false
+        }
     }
 }
