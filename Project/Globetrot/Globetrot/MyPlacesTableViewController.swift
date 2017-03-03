@@ -9,13 +9,19 @@
 import UIKit
 import RealmSwift
 
-class MyPlacesTableViewController: UITableViewController {
+var alreadySaved: Bool = false //To check if information has already been saved once
 
-    // Decider variable. Based on its value, either existing data is shown or no data is shown
+class MyPlaceCell: UITableViewCell {
+    
+    @IBOutlet weak var placeNameLabel: UILabel!
+    @IBOutlet weak var placeImageView: UIImageView!
+}
+
+class MyPlacesTableViewController: UITableViewController {
     
     var allPlaces = realm.objects(Places.self)
-    
     var selectedPlace: Places?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +61,12 @@ class MyPlacesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MyPlaceCell
         
-        cell.textLabel?.text = allPlaces[indexPath.row].placeName
+        cell.placeNameLabel?.text = allPlaces[indexPath.row].placeName
         if(allPlaces[indexPath.row].image != nil)
         {
-            cell.imageView?.image = UIImage(data: allPlaces[indexPath.row].image as! Data)
+            cell.placeImageView?.image = UIImage(data: allPlaces[indexPath.row].image as! Data)
         }
         return cell
     }

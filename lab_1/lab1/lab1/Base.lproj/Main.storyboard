@@ -170,9 +170,9 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="Tvu-gj-B25"/>
                                 <exclude reference="Lso-6A-Jky"/>
                                 <exclude reference="fEB-fE-W6R"/>
+                                <exclude reference="Tvu-gj-B25"/>
                                 <exclude reference="12G-3B-Ax2"/>
                                 <exclude reference="AhN-OM-r1I"/>
                                 <exclude reference="QKp-6e-WiE"/>
@@ -183,12 +183,12 @@
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <include reference="Tvu-gj-B25"/>
-                                <exclude reference="nfD-AC-jNT"/>
                                 <exclude reference="DDb-9p-qh4"/>
                                 <exclude reference="KuS-aQ-sv5"/>
                                 <include reference="Lso-6A-Jky"/>
                                 <include reference="fEB-fE-W6R"/>
+                                <include reference="Tvu-gj-B25"/>
+                                <exclude reference="nfD-AC-jNT"/>
                                 <include reference="12G-3B-Ax2"/>
                                 <exclude reference="4Pr-t2-PLa"/>
                                 <include reference="AhN-OM-r1I"/>

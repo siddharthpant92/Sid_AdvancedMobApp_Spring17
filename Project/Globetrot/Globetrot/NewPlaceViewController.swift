@@ -9,8 +9,6 @@
 import UIKit
 import RealmSwift
 
-var alreadySaved: Bool = false //To check if information has already been saved once
-
 class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var goToExtraNotes: UIButton!
