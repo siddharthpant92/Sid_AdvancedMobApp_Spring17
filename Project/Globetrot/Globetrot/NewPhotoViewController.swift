@@ -23,30 +23,29 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     var documentDirectory = String()
     var localPath = String()
     var imageData = NSData()
+    var changeImage: Bool = false //To detect if a new image should be displayed
+    var chosenImage: UIImage? = nil//Image selected from gallery
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         picker.delegate = self
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        if(place.image != nil)
+        if(changeImage != true) //A new image hasn't been selected
         {
-            placeImageView.image = UIImage(data: place.image as! Data)
+            if(place.image != nil) //An image was previously saved
+            {
+                placeImageView.image = UIImage(data: place.image as! Data)
+            }
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        print()
-        print("photo = \(alreadySaved)")
-        print()
-
+        else //Displaying new image
+        {
+            placeImageView.image = chosenImage
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,17 +64,20 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         picker.sourceType = .camera
         picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera)!
         present(picker, animated: true, completion: nil)
-
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        placeImageView.image = chosenImage
+        chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        if(chosenImage != nil)
+        {
+            changeImage = true
+        }
         dismiss(animated:true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+        changeImage = false
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -98,39 +100,32 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         
         if(alreadySaved == false)
         {
-          self.imageName = NSURL.fileURL(withPath: NSTemporaryDirectory() + placeName+"Image").lastPathComponent
-        }
-        else
-        {
-            self.imageName = NSURL.fileURL(withPath: NSTemporaryDirectory() + place.placeName+"Image").lastPathComponent
-        }
-        
-        if(alreadySaved == false)
-        {
+            self.imageName = NSURL.fileURL(withPath: NSTemporaryDirectory() + placeName+"Image").lastPathComponent
+            
+            //Adding a new object
             place.placeName = placeName
             place.mainNotes = mainNotes
             place.extraNotes = extraNotes
             place.image = data as NSData?
             try! realm.write {
-                //Adding a new object
                 realm.add(place)
             }
         }
         else
         {
+            self.imageName = NSURL.fileURL(withPath: NSTemporaryDirectory() + place.placeName+"Image").lastPathComponent
+            
             //Editing the existing object
             try! realm.write {
                 place.image = data as NSData?
                 place.extraNotes = extraNotes
                 place.placeName = placeName
                 place.mainNotes = mainNotes
-
             }
         }
         
         alreadySaved = true
-        print(place)
-
+        
         let savedAlert = UIAlertController(title: "Saved", message: nil, preferredStyle: .alert)
         present(savedAlert, animated: true, completion: nil)
         let when = DispatchTime.now() + 1

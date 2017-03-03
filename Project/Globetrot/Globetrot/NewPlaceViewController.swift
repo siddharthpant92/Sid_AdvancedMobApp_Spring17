@@ -54,16 +54,11 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
         super.viewDidAppear(true)
         //Unless the user taps save button, every other time it should be false
         saveTapped = false
-        
-        print()
-        print("new place = \(alreadySaved)")
-        print()
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         
-        saveTapped = true
-        
+        saveTapped = true        
         if(alreadySaved == true)
         {   //If the user goes to next screen, clicks save and then comes back here
             try! realm.write {
@@ -115,13 +110,11 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
         let destinationVC = segue.destination as! NewPlaceExtraViewController
         destinationVC.place = place
-//        if(saveTapped == false)
-//        {
-            destinationVC.placeName = placeName.text!
-            destinationVC.mainNotes = mainNotes.text!
-        //}
+        
+        //Can't pass data only if alreadySaved is false because might have chosen an existing place(alreadySaved = true), enter some new text but not click save in which case it has to be passed on for when it does get saved. 
+        destinationVC.placeName = placeName.text!
+        destinationVC.mainNotes = mainNotes.text!
     }
 }

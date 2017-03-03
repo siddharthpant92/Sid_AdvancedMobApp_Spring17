@@ -29,8 +29,6 @@ class MyPlacesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        refresh()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,13 +40,6 @@ class MyPlacesTableViewController: UITableViewController {
         super.viewDidAppear(true)
         
         refresh()
-        
-        print()
-        print()
-        print(allPlaces.count)
-        print(allPlaces)
-        print()
-        print()
     }
     
     // MARK: - Table view data source
@@ -75,12 +66,11 @@ class MyPlacesTableViewController: UITableViewController {
     }
 
 
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        new = false
-//        selectedPlace = allPlaces[indexPath.row] //To pass on the selected object
-//        self.performSegue(withIdentifier: "myPlaceToNewPlace", sender: self)
-//    }
-//    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        alreadySaved = true
+        selectedPlace = allPlaces[indexPath.row] //To pass on the selected object
+        self.performSegue(withIdentifier: "add_myPlaceToNewPlace", sender: self)
+    }
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -126,6 +116,7 @@ class MyPlacesTableViewController: UITableViewController {
 
     @IBAction func addPlaceTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "add_myPlaceToNewPlace", sender: self)
+        alreadySaved = false
     }
     
     func refresh()
@@ -135,9 +126,10 @@ class MyPlacesTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "add_myPlaceToNewPlace")
+        if(alreadySaved == true)
         {
-            alreadySaved = false
+            let destinationVC = segue.destination as! NewPlaceViewController
+            destinationVC.place = selectedPlace!
         }
     }
 }

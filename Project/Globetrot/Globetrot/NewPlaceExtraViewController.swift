@@ -46,46 +46,37 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        saveTapped = false
         
-        print()
-        print("extra = \(alreadySaved)")
-        print()
-
+        saveTapped = false
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         
         saveTapped = true
-       
-        if(alreadySaved == false)
+        if(alreadySaved == false)//Adding the new object
         {
             place.placeName = placeName
             place.mainNotes = mainNotes
             place.image = nil
             place.extraNotes = extraNotes.text!
             try! realm.write {
-                //Adding the new object
                 realm.add(place)
             }
         }
-        else
+        else//Editing the existing object
         {
             try! realm.write {
-                //Editing the existing object
                 place.extraNotes = extraNotes.text!
                 place.placeName = placeName
                 place.mainNotes = mainNotes
             }
         }
-        
         alreadySaved = true
         
         let savedAlert = UIAlertController(title: "Saved", message: nil, preferredStyle: .alert)
         present(savedAlert, animated: true, completion: nil)
         let when = DispatchTime.now() + 1
         DispatchQueue.main.asyncAfter(deadline: when){
-            // your code with delay
             savedAlert.dismiss(animated: true, completion: nil)
         }
         //Waiting for navigation stack to be updated
@@ -108,14 +99,10 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         let destinationVC = segue.destination as! NewPhotoViewController
         destinationVC.place = place
-//        if(saveTapped == false)
-//        {
-            destinationVC.placeName = placeName
-            destinationVC.mainNotes = mainNotes
-            destinationVC.extraNotes = extraNotes.text!
-//        }
+        destinationVC.placeName = placeName
+        destinationVC.mainNotes = mainNotes
+        destinationVC.extraNotes = extraNotes.text!
     }
 }

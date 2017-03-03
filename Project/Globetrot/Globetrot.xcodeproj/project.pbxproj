@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F05DC7C1E686D8E00A21CF7 /* EditPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05DC7B1E686D8E00A21CF7 /* EditPlaceViewController.swift */; };
-		1F05DC7E1E686DBD00A21CF7 /* EditPlaceExtraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05DC7D1E686DBD00A21CF7 /* EditPlaceExtraViewController.swift */; };
-		1F05DC801E686DD500A21CF7 /* EditPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05DC7F1E686DD500A21CF7 /* EditPhotoViewController.swift */; };
 		1F0CE4241E592F7300B237EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0CE4231E592F7300B237EC /* AppDelegate.swift */; };
 		1F0CE4291E592F7300B237EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F0CE4271E592F7300B237EC /* Main.storyboard */; };
 		1F0CE42B1E592F7300B237EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F0CE42A1E592F7300B237EC /* Assets.xcassets */; };
@@ -24,9 +21,6 @@
 
 /* Begin PBXFileReference section */
 		1604AF04ECC5DC7DEB9BC7C1 /* Pods-Globetrot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Globetrot.release.xcconfig"; path = "Pods/Target Support Files/Pods-Globetrot/Pods-Globetrot.release.xcconfig"; sourceTree = "<group>"; };
-		1F05DC7B1E686D8E00A21CF7 /* EditPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPlaceViewController.swift; sourceTree = "<group>"; };
-		1F05DC7D1E686DBD00A21CF7 /* EditPlaceExtraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPlaceExtraViewController.swift; sourceTree = "<group>"; };
-		1F05DC7F1E686DD500A21CF7 /* EditPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPhotoViewController.swift; sourceTree = "<group>"; };
 		1F0CE4201E592F7300B237EC /* Globetrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Globetrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F0CE4231E592F7300B237EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F0CE4281E592F7300B237EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,9 +75,6 @@
 				1F10DB751E5EB13000591274 /* NewPlaceViewController.swift */,
 				1F10DB771E5EB59D00591274 /* NewPlaceExtraViewController.swift */,
 				1F10DB791E5EB5B400591274 /* NewPhotoViewController.swift */,
-				1F05DC7B1E686D8E00A21CF7 /* EditPlaceViewController.swift */,
-				1F05DC7D1E686DBD00A21CF7 /* EditPlaceExtraViewController.swift */,
-				1F05DC7F1E686DD500A21CF7 /* EditPhotoViewController.swift */,
 				1FB337C11E663A9B0019CB91 /* Places.swift */,
 				1F0CE42A1E592F7300B237EC /* Assets.xcassets */,
 				1F0CE42C1E592F7300B237EC /* LaunchScreen.storyboard */,
@@ -237,11 +228,8 @@
 				1F10DB761E5EB13000591274 /* NewPlaceViewController.swift in Sources */,
 				1F10DB781E5EB59D00591274 /* NewPlaceExtraViewController.swift in Sources */,
 				1F3F74771E593D8800AD6F51 /* MyPlacesTableViewController.swift in Sources */,
-				1F05DC7C1E686D8E00A21CF7 /* EditPlaceViewController.swift in Sources */,
 				1F10DB7A1E5EB5B400591274 /* NewPhotoViewController.swift in Sources */,
 				1FB337C21E663A9B0019CB91 /* Places.swift in Sources */,
-				1F05DC801E686DD500A21CF7 /* EditPhotoViewController.swift in Sources */,
-				1F05DC7E1E686DBD00A21CF7 /* EditPlaceExtraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
