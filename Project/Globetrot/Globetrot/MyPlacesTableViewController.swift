@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-var alreadySaved: Bool = false //To check if information has already been saved once
+var alreadySaved: Bool = false //To check if information has already been saved once.
 
 class MyPlaceCell: UITableViewCell {
     
