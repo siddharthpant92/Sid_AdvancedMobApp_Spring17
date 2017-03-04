@@ -83,7 +83,7 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func saveButtonTapped(_ sender: Any) {
         if(placeImageView.image == nil)
         {
-            let alert = UIAlertController(title: "Image missing!.", message:
+            let alert = UIAlertController(title: "Image missing!", message:
                 "Please select an image and then save.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,
                                           handler: nil))

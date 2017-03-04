@@ -16,7 +16,6 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
     @IBOutlet weak var placeName: UITextField!
     
     var place = Places()
-    var saveTapped = Bool() //To check whether save button was tapped or not
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +36,7 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
      
-        //Displaying information if user had entered something while adding a new place and then comes back to this screen
+        //Displaying information if user had previously saved
         if(place.placeName != "")
         {
             placeName.text = place.placeName
@@ -48,15 +47,8 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        //Unless the user taps save button, every other time it should be false
-        saveTapped = false
-    }
-    
     @IBAction func saveButtonTapped(_ sender: Any) {
         
-        saveTapped = true        
         if(alreadySaved == true)
         {   //If the user goes to next screen, clicks save and then comes back here
             try! realm.write {

@@ -15,7 +15,7 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var extraNotes: UITextView!
 
     var place = Places()
-    var saveTapped = Bool() //To check if save button was tapped
+
     var placeName = String() //To store the place name if not saved before
     var mainNotes = String()//To store the main notes if not saved before
 
@@ -44,15 +44,8 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+   @IBAction func saveButtonTapped(_ sender: Any) {
         
-        saveTapped = false
-    }
-    
-    @IBAction func saveButtonTapped(_ sender: Any) {
-        
-        saveTapped = true
         if(alreadySaved == false)//Adding the new object
         {
             place.placeName = placeName
@@ -65,6 +58,7 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
         }
         else//Editing the existing object
         {
+            //If the user had previously saved, the same values are simply over-written
             try! realm.write {
                 place.extraNotes = extraNotes.text!
                 place.placeName = placeName
