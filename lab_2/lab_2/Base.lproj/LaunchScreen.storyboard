@@ -46,7 +46,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lab 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3I-vx-Mpb">
-                                <rect key="frame" x="119" y="96" width="82" height="21"/>
+                                <rect key="frame" x="119" y="90" width="82" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="82" id="14y-9I-ov7"/>
                                     <constraint firstAttribute="height" constant="21" id="Nq0-3X-jMS"/>
@@ -59,8 +59,8 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jSZ-e5-yPy" firstAttribute="top" secondItem="oNg-eb-8A2" secondAttribute="bottom" constant="33" id="7vU-jx-fEq"/>
-                            <constraint firstItem="f3I-vx-Mpb" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="76" id="FHL-Y1-0fl"/>
-                            <constraint firstItem="ahC-0I-QNg" firstAttribute="top" secondItem="f3I-vx-Mpb" secondAttribute="bottom" constant="29" id="JzN-Pc-uFc"/>
+                            <constraint firstItem="f3I-vx-Mpb" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="70" id="FHL-Y1-0fl"/>
+                            <constraint firstItem="ahC-0I-QNg" firstAttribute="top" secondItem="f3I-vx-Mpb" secondAttribute="bottom" constant="35" id="JzN-Pc-uFc"/>
                             <constraint firstItem="oNg-eb-8A2" firstAttribute="top" secondItem="ahC-0I-QNg" secondAttribute="bottom" constant="27" id="ZN6-Jg-ULc"/>
                             <constraint firstItem="f3I-vx-Mpb" firstAttribute="centerX" secondItem="ahC-0I-QNg" secondAttribute="centerX" id="g14-up-CPc"/>
                             <constraint firstItem="ahC-0I-QNg" firstAttribute="centerX" secondItem="oNg-eb-8A2" secondAttribute="centerX" id="hfs-W8-Mt6"/>
