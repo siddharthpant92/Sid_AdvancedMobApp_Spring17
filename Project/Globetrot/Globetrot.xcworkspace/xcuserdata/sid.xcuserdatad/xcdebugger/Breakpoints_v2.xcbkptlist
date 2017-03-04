@@ -93,38 +93,6 @@
             timestampString = "510205511.012997"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Globetrot/MyPlacesTableViewController.swift"
-            timestampString = "510205511.012997"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Globetrot/MyPlacesTableViewController.swift"
-            timestampString = "510205511.012997"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
             landmarkName = "MyPlacesTableViewController"
@@ -214,22 +182,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Globetrot/MyPlacesTableViewController.swift"
-            timestampString = "510205511.012997"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Globetrot/NewPhotoViewController.swift"
             timestampString = "510202876.295806"
             startingColumnNumber = "9223372036854775807"
@@ -295,11 +247,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Globetrot/MyPlacesTableViewController.swift"
-            timestampString = "510205511.012997"
+            timestampString = "510283698.22958"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -311,11 +263,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Globetrot/MyPlacesTableViewController.swift"
-            timestampString = "510205511.012997"
+            timestampString = "510283698.22958"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -327,13 +279,90 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Globetrot/MyPlacesTableViewController.swift"
-            timestampString = "510205511.012997"
+            timestampString = "510283252.788538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "MyPlacesTableViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Globetrot.MyPlacesTableViewController.filteredPlaces.getter : Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "Globetrot"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sid/Desktop/Spring%2017/Advanced%20MobApp/Labs%20and%20Project/Project/Globetrot/Globetrot/MyPlacesTableViewController.swift"
+                  timestampString = "510283253.547971"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Globetrot.MyPlacesTableViewController.filteredPlaces.setter : Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "Globetrot"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sid/Desktop/Spring%2017/Advanced%20MobApp/Labs%20and%20Project/Project/Globetrot/Globetrot/MyPlacesTableViewController.swift"
+                  timestampString = "510283253.549328"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Globetrot.MyPlacesTableViewController.init (style : __C.UITableViewStyle) -&gt; Globetrot.MyPlacesTableViewController"
+                  moduleName = "Globetrot"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sid/Desktop/Spring%2017/Advanced%20MobApp/Labs%20and%20Project/Project/Globetrot/Globetrot/MyPlacesTableViewController.swift"
+                  timestampString = "510283253.550747"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Globetrot.MyPlacesTableViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; Globetrot.MyPlacesTableViewController"
+                  moduleName = "Globetrot"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sid/Desktop/Spring%2017/Advanced%20MobApp/Labs%20and%20Project/Project/Globetrot/Globetrot/MyPlacesTableViewController.swift"
+                  timestampString = "510283253.552063"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "200">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Globetrot.MyPlacesTableViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Globetrot.MyPlacesTableViewController&gt;"
+                  moduleName = "Globetrot"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sid/Desktop/Spring%2017/Advanced%20MobApp/Labs%20and%20Project/Project/Globetrot/Globetrot/MyPlacesTableViewController.swift"
+                  timestampString = "510283253.553284"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "148">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -17,11 +17,16 @@ class MyPlaceCell: UITableViewCell {
     @IBOutlet weak var placeImageView: UIImageView!
 }
 
-class MyPlacesTableViewController: UITableViewController {
+class MyPlacesTableViewController: UITableViewController, UISearchBarDelegate {
     
     var allPlaces = realm.objects(Places.self)
     var selectedPlace: Places?
     
+    var filteredPlaces = [Places]() //To store the filtered places details
+    
+    var searching = Bool() //To indicate whether user is searching for a place
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,17 +61,34 @@ class MyPlacesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return allPlaces.count
+        if(searching == true)
+        {
+            return filteredPlaces.count
+        }
+        else
+        {
+            return allPlaces.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MyPlaceCell
         
-        cell.placeNameLabel?.text = allPlaces[indexPath.row].placeName
-        if(allPlaces[indexPath.row].image != nil)
+        if(searching == true)
         {
-            cell.placeImageView?.image = UIImage(data: allPlaces[indexPath.row].image as! Data)
+            cell.placeNameLabel?.text = filteredPlaces[indexPath.row].placeName
+            if(filteredPlaces[indexPath.row].image != nil)
+            {
+                cell.placeImageView?.image = UIImage(data: filteredPlaces[indexPath.row].image as! Data)
+            }
+        }
+        else
+        {
+            cell.placeNameLabel?.text = allPlaces[indexPath.row].placeName
+            if(allPlaces[indexPath.row].image != nil)
+            {
+                cell.placeImageView?.image = UIImage(data: allPlaces[indexPath.row].image as! Data)
+            }
         }
         return cell
     }
@@ -74,7 +96,16 @@ class MyPlacesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         alreadySaved = true
-        selectedPlace = allPlaces[indexPath.row] //To pass on the selected object
+        
+        //To pass on the selected object
+        if(searching == true)
+        {
+            selectedPlace = filteredPlaces[indexPath.row]
+        }
+        else
+        {
+            selectedPlace = allPlaces[indexPath.row]
+        }
         self.performSegue(withIdentifier: "add_myPlaceToNewPlace", sender: self)
     }
     
@@ -129,6 +160,32 @@ class MyPlacesTableViewController: UITableViewController {
     {
         allPlaces = realm.objects(Places.self)
         tableView.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if(searchText == "")
+        {
+            searching = false
+            tableView.reloadData()
+        }
+        else
+        {
+            searching = true
+            filteredPlaces = []
+            let newSearchText = searchText.lowercased()
+            for i in allPlaces
+            {
+                if((i.placeName.lowercased().range(of: newSearchText)) != nil)
+                {
+                    filteredPlaces.append(i)
+                }
+            }
+            tableView.reloadData()
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
