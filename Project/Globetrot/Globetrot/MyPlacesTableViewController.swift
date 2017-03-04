@@ -152,8 +152,8 @@ class MyPlacesTableViewController: UITableViewController, UISearchBarDelegate {
     */
 
     @IBAction func addPlaceTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "add_myPlaceToNewPlace", sender: self)
         alreadySaved = false
+        self.performSegue(withIdentifier: "add_myPlaceToNewPlace", sender: self)
     }
     
     func refresh()
