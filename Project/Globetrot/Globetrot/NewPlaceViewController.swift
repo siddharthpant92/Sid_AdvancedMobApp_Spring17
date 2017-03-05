@@ -40,6 +40,7 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
         if(place.placeName != "")
         {
             placeName.text = place.placeName
+            self.navigationItem.title = place.placeName
         }
         if(place.mainNotes != "")
         {

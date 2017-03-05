@@ -35,7 +35,7 @@
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8tM-hM-Ftx" id="qCt-mB-bt0">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Rh-Lc-JlF">
@@ -98,7 +98,7 @@
             </objects>
             <point key="canvasLocation" x="2176.875" y="-73.943661971830991"/>
         </scene>
-        <!--Title-->
+        <!--New Photo View Controller-->
         <scene sceneID="i8k-52-Bnw">
             <objects>
                 <viewController id="iIQ-Yx-kW4" customClass="NewPhotoViewController" customModule="Globetrot" customModuleProvider="target" sceneMemberID="viewController">
@@ -148,7 +148,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="1Jl-q9-Afi" secondAttribute="trailing" constant="9" id="iMk-53-CWM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="qwP-eR-kV8">
+                    <navigationItem key="navigationItem" id="qwP-eR-kV8">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="pNu-ua-Q0w">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="iIQ-Yx-kW4" id="bPi-Pt-JiP"/>
@@ -183,7 +183,7 @@
             </objects>
             <point key="canvasLocation" x="1283" y="-74"/>
         </scene>
-        <!--Title-->
+        <!--New Place Extra View Controller-->
         <scene sceneID="aeQ-Pw-H7O">
             <objects>
                 <viewController id="v3f-P7-wPG" customClass="NewPlaceExtraViewController" customModule="Globetrot" customModuleProvider="target" sceneMemberID="viewController">
@@ -232,7 +232,7 @@
                             </constraint>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Vdo-ps-SkX">
+                    <navigationItem key="navigationItem" id="Vdo-ps-SkX">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="7Lv-Il-LzM">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="v3f-P7-wPG" id="i7T-bX-nH2"/>

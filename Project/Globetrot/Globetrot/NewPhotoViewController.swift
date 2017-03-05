@@ -35,6 +35,8 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        self.navigationItem.title = place.placeName
+        
         if(changeImage != true) //A new image hasn't been selected
         {
             if(place.image != nil) //An image was previously saved
