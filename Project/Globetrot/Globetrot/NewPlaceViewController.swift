@@ -9,7 +9,22 @@
 import UIKit
 import RealmSwift
 
-class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
+//To dismiss the keyboard
+extension UIViewController
+{
+    func hideKeyboardWhenTappedAround()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
+}
+
+class NewPlaceViewController: UIViewController {
 
     @IBOutlet weak var goToExtraNotes: UIButton!
     @IBOutlet weak var mainNotes: UITextView!
@@ -25,8 +40,7 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
         mainNotes.layer.borderColor = UIColor.gray.cgColor
         mainNotes.layer.borderWidth = 0.5
         
-        mainNotes.delegate = self
-        placeName.delegate = self
+        self.hideKeyboardWhenTappedAround()
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,8 +65,10 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
     @IBAction func saveButtonTapped(_ sender: Any) {
         
         if(alreadySaved == true)
-        {   //If the user goes to next screen, clicks save and then comes back here
-            try! realm.write {
+        {
+            //If the user goes to next screen, clicks save and then comes back here
+            try! realm.write
+            {
                 place.placeName = placeName.text!
                 place.mainNotes = mainNotes.text!
             }
@@ -73,9 +89,11 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
         present(savedAlert, animated: true, completion: nil)
         let when = DispatchTime.now() + 1
         DispatchQueue.main.asyncAfter(deadline: when){
-            // your code with delay
             savedAlert.dismiss(animated: true, completion: nil)
         }
+        
+        self.hideKeyboardWhenTappedAround()
+       
         //Waiting for navigation stack to be updated
         sleep(1)
     }
@@ -85,20 +103,6 @@ class NewPlaceViewController: UIViewController, UITextViewDelegate, UITextFieldD
         self.performSegue(withIdentifier: "add_newPlaceToExtra", sender: self)
     }
     
-    
-    //Hides the keyboard on pressing return key
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if(text == "\n") {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! NewPlaceExtraViewController

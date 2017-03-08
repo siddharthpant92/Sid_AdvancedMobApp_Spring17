@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
+class NewPlaceExtraViewController: UIViewController {
 
     @IBOutlet weak var goToPhoto: UIButton!
     @IBOutlet weak var extraNotes: UITextView!
@@ -28,7 +28,7 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
         extraNotes.layer.borderColor = UIColor.gray.cgColor
         extraNotes.layer.borderWidth = 0.5
         
-        extraNotes.delegate = self
+        self.hideKeyboardWhenTappedAround()
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,14 +52,16 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
             place.mainNotes = mainNotes
             place.image = nil
             place.extraNotes = extraNotes.text!
-            try! realm.write {
+            try! realm.write
+            {
                 realm.add(place)
             }
         }
         else//Editing the existing object
         {
             //If the user had previously saved, the same values are simply over-written
-            try! realm.write {
+            try! realm.write
+            {
                 place.extraNotes = extraNotes.text!
                 place.placeName = placeName
                 place.mainNotes = mainNotes
@@ -73,25 +75,17 @@ class NewPlaceExtraViewController: UIViewController, UITextViewDelegate {
         DispatchQueue.main.asyncAfter(deadline: when){
             savedAlert.dismiss(animated: true, completion: nil)
         }
+    
+        self.hideKeyboardWhenTappedAround()
+    
         //Waiting for navigation stack to be updated
         sleep(1)
-
     }
-    
     
     @IBAction func goToPhotosTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "add_extraToPhoto", sender: self)
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if(text == "\n")
-        {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! NewPhotoViewController
         destinationVC.place = place

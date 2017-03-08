@@ -12,17 +12,17 @@ import RealmSwift
 class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var placeImageView: UIImageView!
+    @IBOutlet weak var loadingLabel: UILabel!
     
     var place = Places()
-    var imageName = String()//The name of the image to be saved
     var placeName = String()//To store the name of place if not saved before
     var mainNotes = String()//To store the main notes if not saved before
     var extraNotes = String()//To store the extra notes if not saved before
+    var imageData = NSData()//The image data to be saved
     
     let picker = UIImagePickerController()
     var documentDirectory = String()
     var localPath = String()
-    var imageData = NSData()
     var changeImage: Bool = false //To detect if a new image should be displayed
     var chosenImage: UIImage? = nil//Image selected from gallery
 
@@ -37,6 +37,8 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         
         self.navigationItem.title = place.placeName
         
+        loadingLabel.isHidden = false
+        
         if(changeImage != true) //A new image hasn't been selected
         {
             if(place.image != nil) //An image was previously saved
@@ -47,6 +49,11 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         else //Displaying new image
         {
             placeImageView.image = chosenImage
+        }
+        
+        if(placeImageView.image != nil) //Hiding the loading label
+        {
+            loadingLabel.isHidden = true
         }
     }
     
@@ -70,7 +77,7 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-        if(chosenImage != nil)
+        if(chosenImage != nil) //A new image has been selected and should be displayed
         {
             changeImage = true
         }
@@ -79,7 +86,7 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
-        changeImage = false
+        changeImage = false //A new image wasn't selected
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -92,7 +99,8 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
             self.present(alert, animated: true, completion: nil)
             return
         }
-        let data = UIImageJPEGRepresentation(placeImageView.image!, 0.6)
+        
+        let data = UIImageJPEGRepresentation(placeImageView.image!, 1)
         let compressedJPEGImage = UIImage(data: data!)
         if(picker.sourceType == .camera)
         {
@@ -102,23 +110,21 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         
         if(alreadySaved == false)
         {
-            self.imageName = NSURL.fileURL(withPath: NSTemporaryDirectory() + placeName+"Image").lastPathComponent
-            
             //Adding a new object
             place.placeName = placeName
             place.mainNotes = mainNotes
             place.extraNotes = extraNotes
             place.image = data as NSData?
-            try! realm.write {
+            try! realm.write
+            {
                 realm.add(place)
             }
         }
         else
         {
-            self.imageName = NSURL.fileURL(withPath: NSTemporaryDirectory() + place.placeName+"Image").lastPathComponent
-            
             //Editing the existing object
-            try! realm.write {
+            try! realm.write
+            {
                 place.image = data as NSData?
                 place.extraNotes = extraNotes
                 place.placeName = placeName

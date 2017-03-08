@@ -9,6 +9,9 @@
 import UIKit
 import RealmSwift
 
+//Creating a global instance
+var realm = try! Realm()
+
 var alreadySaved: Bool = false //To check if information has already been saved once.
 
 class MyPlaceCell: UITableViewCell {
@@ -24,7 +27,7 @@ class MyPlacesTableViewController: UITableViewController, UISearchBarDelegate {
     
     var filteredPlaces = [Places]() //To store the filtered places details
     
-    var searching = Bool() //To indicate whether user is searching for a place
+    var searching = Bool() //To indicate whether user is searching and filtering places or not
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -34,6 +37,9 @@ class MyPlacesTableViewController: UITableViewController, UISearchBarDelegate {
         navigationController?.navigationBar.barTintColor = UIColor.orange
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
+        
+        searchBar.delegate = self
+        searchBar.showsCancelButton = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,7 +92,7 @@ class MyPlacesTableViewController: UITableViewController, UISearchBarDelegate {
 
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        alreadySaved = true
+        alreadySaved = true //So that the content that is present is displayed and the user can edit it
         
         //To pass on the selected object
         if(searching == true)
@@ -101,15 +107,15 @@ class MyPlacesTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            try! realm.write {
+        if editingStyle == .delete
+        {
+            try! realm.write
+            {
                 realm.delete(allPlaces[indexPath.row])
             }
-            // Delete the row from the data source
+            //Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
 
     
@@ -117,7 +123,7 @@ class MyPlacesTableViewController: UITableViewController, UISearchBarDelegate {
     {}
     
     @IBAction func addPlaceTapped(_ sender: Any) {
-        alreadySaved = false
+        alreadySaved = false //Allows the user to add new content for the new places
         self.performSegue(withIdentifier: "add_myPlaceToNewPlace", sender: self)
     }
     
@@ -125,6 +131,11 @@ class MyPlacesTableViewController: UITableViewController, UISearchBarDelegate {
     {
         allPlaces = realm.objects(Places.self)
         tableView.reloadData()
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsCancelButton = true
+        return true
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -151,6 +162,11 @@ class MyPlacesTableViewController: UITableViewController, UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
+        searchBar.text = ""
+        searching = false //Shows unfiltered data
+        tableView.reloadData()
+        
+        searchBar.showsCancelButton = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

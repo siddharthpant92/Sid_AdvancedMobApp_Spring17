@@ -35,7 +35,7 @@
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8tM-hM-Ftx" id="qCt-mB-bt0">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Rh-Lc-JlF">
@@ -113,6 +113,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="woK-iz-SlQ">
                                 <rect key="frame" x="16" y="72" width="288" height="416"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your image will appear here!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2U-il-3Ow">
+                                <rect key="frame" x="16" y="270" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9MI-Gc-zl2">
                                 <rect key="frame" x="25" y="496" width="80" height="60"/>
                                 <constraints>
@@ -137,7 +143,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="j2U-il-3Ow" firstAttribute="leading" secondItem="woK-iz-SlQ" secondAttribute="leading" id="05O-wl-nA4"/>
                             <constraint firstItem="9MI-Gc-zl2" firstAttribute="leading" secondItem="Eqb-Pa-Kca" secondAttribute="leadingMargin" constant="9" id="2v9-jH-ntc"/>
+                            <constraint firstItem="j2U-il-3Ow" firstAttribute="trailing" secondItem="woK-iz-SlQ" secondAttribute="trailing" id="93t-bd-iVO"/>
                             <constraint firstItem="woK-iz-SlQ" firstAttribute="top" secondItem="oCT-lK-XBC" secondAttribute="bottom" constant="8" symbolic="YES" id="AhK-ds-lVM"/>
                             <constraint firstItem="woK-iz-SlQ" firstAttribute="leading" secondItem="Eqb-Pa-Kca" secondAttribute="leadingMargin" id="DCj-HX-mLE"/>
                             <constraint firstItem="9MI-Gc-zl2" firstAttribute="top" secondItem="1Jl-q9-Afi" secondAttribute="top" id="H3j-Wg-cBv"/>
@@ -146,6 +154,7 @@
                             <constraint firstItem="dnZ-GY-NTC" firstAttribute="top" secondItem="9MI-Gc-zl2" secondAttribute="bottom" constant="12" id="SAO-ts-rZj"/>
                             <constraint firstItem="9MI-Gc-zl2" firstAttribute="bottom" secondItem="1Jl-q9-Afi" secondAttribute="bottom" id="aqs-hr-Mam"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1Jl-q9-Afi" secondAttribute="trailing" constant="9" id="iMk-53-CWM"/>
+                            <constraint firstItem="j2U-il-3Ow" firstAttribute="centerY" secondItem="woK-iz-SlQ" secondAttribute="centerY" id="zPP-9A-CX8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qwP-eR-kV8">
@@ -156,6 +165,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="loadingLabel" destination="j2U-il-3Ow" id="x2i-Bb-ejV"/>
                         <outlet property="placeImageView" destination="woK-iz-SlQ" id="hBB-G2-mQP"/>
                         <segue destination="Cca-E4-Zfl" kind="unwind" identifier="newPhotoToMyPlaces" unwindAction="backToMyPlacesWithSegue:" id="jGh-Sd-hX7"/>
                     </connections>
@@ -163,7 +173,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A08-hf-zOq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Cca-E4-Zfl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3255" y="705"/>
+            <point key="canvasLocation" x="3255" y="704.57746478873241"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r2y-n7-KZJ">
