@@ -11,7 +11,7 @@ import RealmSwift
 
 class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var placeImageView: UIImageView!
+    @IBOutlet weak var placeImageView: UIImageView?
     @IBOutlet weak var loadingLabel: UILabel!
     
     var place = Places()
@@ -23,38 +23,48 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     let picker = UIImagePickerController()
     var documentDirectory = String()
     var localPath = String()
-    var changeImage: Bool = false //To detect if a new image should be displayed
+    var changeImage: Bool = false//To detect if a new image should be displayed
     var chosenImage: UIImage? = nil//Image selected from gallery
-
+    var imagePresent = Bool()//If user wants to save without an image
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         picker.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+   override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
         self.navigationItem.title = place.placeName
-        
         loadingLabel.isHidden = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         
         if(changeImage != true) //A new image hasn't been selected
         {
             if(place.image != nil) //An image was previously saved
             {
-                placeImageView.image = UIImage(data: place.image as! Data)
+                placeImageView?.image = UIImage(data: place.image as! Data)
             }
         }
         else //Displaying new image
         {
-            placeImageView.image = chosenImage
+            placeImageView?.image = chosenImage
         }
         
-        if(placeImageView.image != nil) //Hiding the loading label
+        if(placeImageView?.image != nil)
         {
             loadingLabel.isHidden = true
+            imagePresent = true
         }
+        else
+        {
+            imagePresent = false
+        }
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -75,6 +85,7 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         present(picker, animated: true, completion: nil)
     }
     
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         if(chosenImage != nil) //A new image has been selected and should be displayed
@@ -90,57 +101,73 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        if(placeImageView.image == nil)
+      if (imagePresent == true)
         {
-            let alert = UIAlertController(title: "Image missing!", message:
-                "Please select an image and then save.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,
-                                          handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            return
+            let data = UIImageJPEGRepresentation((placeImageView?.image)!, 1)
+            let compressedJPEGImage = UIImage(data: data!)
+            if(picker.sourceType == .camera)
+            {
+                //Saving the photo only if it was taken from the camera. Otherwise it already exists in the library
+                UIImageWriteToSavedPhotosAlbum(compressedJPEGImage!, nil, nil, nil)
+            }
+            
+            save(data: data as NSData?)//Saving with image
+            
+            let savedAlert = UIAlertController(title: "Saved", message: nil, preferredStyle: .alert)
+            present(savedAlert, animated: true, completion: nil)
+            let delay = DispatchTime.now() + 1
+            DispatchQueue.main.asyncAfter(deadline: delay){
+                savedAlert.dismiss(animated: true, completion: self.goBack)
+            }
+
         }
-        
-        let data = UIImageJPEGRepresentation(placeImageView.image!, 1)
-        let compressedJPEGImage = UIImage(data: data!)
-        if(picker.sourceType == .camera)
+        else if (imagePresent == false)
         {
-            //Saving the photo only if it was taken from the camera. Otherwise it already exists in the library
-            UIImageWriteToSavedPhotosAlbum(compressedJPEGImage!, nil, nil, nil)
+            save(data: nil)//Saving without image
+         
+            let savedAlert = UIAlertController(title: "Saved", message: "Your entry has no image.", preferredStyle: .alert)
+            present(savedAlert, animated: true, completion: nil)
+            let delay = DispatchTime.now() + 1
+            DispatchQueue.main.asyncAfter(deadline: delay){
+                savedAlert.dismiss(animated: true, completion: self.goBack)
+            }
+
         }
-        
+        alreadySaved = true
+    }
+    
+    
+    @IBAction func deletePhtotoTapped(_ sender: Any) {
+        placeImageView?.image = nil
+        imagePresent = false
+    }
+    
+    func save(data: NSData?)
+    {
         if(alreadySaved == false)
         {
             //Adding a new object
             place.placeName = placeName
             place.mainNotes = mainNotes
             place.extraNotes = extraNotes
-            place.image = data as NSData?
+            place.image = data
             try! realm.write
             {
-                realm.add(place)
+                    realm.add(place)
             }
         }
         else
         {
             //Editing the existing object
             try! realm.write
-            {
-                place.image = data as NSData?
-                place.extraNotes = extraNotes
-                place.placeName = placeName
-                place.mainNotes = mainNotes
+                {
+                    place.image = data
+                    place.extraNotes = extraNotes
+                    place.placeName = placeName
+                    place.mainNotes = mainNotes
             }
         }
-        
-        alreadySaved = true
-        
-        let savedAlert = UIAlertController(title: "Saved", message: nil, preferredStyle: .alert)
-        present(savedAlert, animated: true, completion: nil)
-        let when = DispatchTime.now() + 1
-        DispatchQueue.main.asyncAfter(deadline: when){
-            // your code with delay
-            savedAlert.dismiss(animated: true, completion: self.goBack)
-        }
+
     }
     
     func goBack()
@@ -148,3 +175,17 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         self.performSegue(withIdentifier: "newPhotoToMyPlaces", sender: self)
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

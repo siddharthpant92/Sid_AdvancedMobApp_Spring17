@@ -78,6 +78,10 @@ class MyPlacesTableViewController: UITableViewController, UISearchBarDelegate {
             {
                 cell.placeImageView?.image = UIImage(data: filteredPlaces[indexPath.row].image as! Data)
             }
+            else
+            {
+                cell.placeImageView?.image = UIImage(named: "delete")
+            }
         }
         else
         {
@@ -85,6 +89,10 @@ class MyPlacesTableViewController: UITableViewController, UISearchBarDelegate {
             if(allPlaces[indexPath.row].image != nil)
             {
                 cell.placeImageView?.image = UIImage(data: allPlaces[indexPath.row].image as! Data)
+            }
+            else
+            {
+                cell.placeImageView?.image = UIImage(named: "delete")
             }
         }
         return cell
