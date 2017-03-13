@@ -15,17 +15,16 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var loadingLabel: UILabel!
     
     var place = Places()
-    var placeName = String()//To store the name of place if not saved before
-    var mainNotes = String()//To store the main notes if not saved before
-    var extraNotes = String()//To store the extra notes if not saved before
+    var placeName = String()//To store the name of place
+    var mainNotes = String()//To store the main notes
+    var extraNotes = String()//To store the extra notes
     var imageData = NSData()//The image data to be saved
     
     let picker = UIImagePickerController()
-    var documentDirectory = String()
-    var localPath = String()
+    
     var changeImage: Bool = false//To detect if a new image should be displayed
     var chosenImage: UIImage? = nil//Image selected from gallery
-    var imagePresent = Bool()//If user wants to save without an image
+    var imagePresent = Bool()//To check if an image is being displayed or not
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +42,7 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        if(changeImage != true) //A new image hasn't been selected
+        if(changeImage != true) //A new image hasn't been selected(after user selects the camera or library icon
         {
             if(place.image != nil) //An image was previously saved
             {
@@ -72,13 +71,14 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         // Dispose of any resources that can be recreated.
     }
     
+    //Selecting photo from the library
     @IBAction func libraryButtonTapped(_ sender: Any) {
         picker.sourceType = .photoLibrary
         picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
         present(picker, animated: true, completion: nil)
     }
     
-    
+    //Using the camera to take a photo
     @IBAction func cameraButtonTapped(_ sender: Any) {
         picker.sourceType = .camera
         picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera)!
@@ -105,9 +105,8 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         {
             let data = UIImageJPEGRepresentation((placeImageView?.image)!, 1)
             let compressedJPEGImage = UIImage(data: data!)
-            if(picker.sourceType == .camera)
+            if(picker.sourceType == .camera)//Saving the photo only if it was taken from the camera. Otherwise it already exists in the library
             {
-                //Saving the photo only if it was taken from the camera. Otherwise it already exists in the library
                 UIImageWriteToSavedPhotosAlbum(compressedJPEGImage!, nil, nil, nil)
             }
             
@@ -119,7 +118,6 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
             DispatchQueue.main.asyncAfter(deadline: delay){
                 savedAlert.dismiss(animated: true, completion: self.goBack)
             }
-
         }
         else if (imagePresent == false)
         {
@@ -131,14 +129,14 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
             DispatchQueue.main.asyncAfter(deadline: delay){
                 savedAlert.dismiss(animated: true, completion: self.goBack)
             }
-
         }
         alreadySaved = true
     }
     
     
     @IBAction func deletePhtotoTapped(_ sender: Any) {
-        placeImageView?.image = nil
+        placeImageView?.image = nil//Clearing the image
+        loadingLabel.isHidden = false
         imagePresent = false
     }
     
@@ -167,7 +165,6 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
                     place.mainNotes = mainNotes
             }
         }
-
     }
     
     func goBack()

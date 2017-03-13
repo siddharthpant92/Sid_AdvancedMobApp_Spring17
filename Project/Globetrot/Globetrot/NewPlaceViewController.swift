@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-//To dismiss the keyboard
+//To dismiss the keyboard by tapping outside a textBox or textView
 extension UIViewController
 {
     func hideKeyboardWhenTappedAround()
@@ -37,10 +37,10 @@ class NewPlaceViewController: UIViewController {
 
         goToExtraNotes.backgroundColor = UIColor.orange
         goToExtraNotes.tintColor = UIColor.white
-        mainNotes.layer.borderColor = UIColor.gray.cgColor
+        mainNotes.layer.borderColor = UIColor.gray.cgColor//Giving a border to text view
         mainNotes.layer.borderWidth = 0.5
         
-        self.hideKeyboardWhenTappedAround()
+        self.hideKeyboardWhenTappedAround()//Dismisses the keyboard
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,9 +66,9 @@ class NewPlaceViewController: UIViewController {
         
         if(alreadySaved == true)
         {
-            //If the user goes to next screen, clicks save and then comes back here
             try! realm.write
             {
+                //Editing the existing object
                 place.placeName = placeName.text!
                 place.mainNotes = mainNotes.text!
             }
@@ -78,6 +78,7 @@ class NewPlaceViewController: UIViewController {
             place.placeName = placeName.text!
             place.mainNotes = mainNotes.text!
             
+            //Adding a new object
             try! realm.write {
                 realm.add(place)
             }
@@ -92,8 +93,6 @@ class NewPlaceViewController: UIViewController {
             savedAlert.dismiss(animated: true, completion: nil)
         }
         
-        self.hideKeyboardWhenTappedAround()
-       
         //Waiting for navigation stack to be updated
         sleep(1)
     }

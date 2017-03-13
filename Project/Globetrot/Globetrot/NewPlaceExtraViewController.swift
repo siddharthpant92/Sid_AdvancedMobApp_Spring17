@@ -16,8 +16,8 @@ class NewPlaceExtraViewController: UIViewController {
 
     var place = Places()
 
-    var placeName = String() //To store the place name if not saved before
-    var mainNotes = String()//To store the main notes if not saved before
+    var placeName = String()//To store the place name
+    var mainNotes = String()//To store the main notes
 
     
     override func viewDidLoad() {
@@ -25,7 +25,7 @@ class NewPlaceExtraViewController: UIViewController {
 
         goToPhoto.backgroundColor = UIColor.orange
         goToPhoto.tintColor = UIColor.white
-        extraNotes.layer.borderColor = UIColor.gray.cgColor
+        extraNotes.layer.borderColor = UIColor.gray.cgColor//Giving a border to text view
         extraNotes.layer.borderWidth = 0.5
         
         self.hideKeyboardWhenTappedAround()
@@ -46,8 +46,9 @@ class NewPlaceExtraViewController: UIViewController {
     
    @IBAction func saveButtonTapped(_ sender: Any) {
         
-        if(alreadySaved == false)//Adding the new object
+        if(alreadySaved == false)
         {
+            //Adding the new object
             place.placeName = placeName
             place.mainNotes = mainNotes
             place.image = nil
@@ -76,8 +77,6 @@ class NewPlaceExtraViewController: UIViewController {
             savedAlert.dismiss(animated: true, completion: nil)
         }
     
-        self.hideKeyboardWhenTappedAround()
-    
         //Waiting for navigation stack to be updated
         sleep(1)
     }
@@ -89,6 +88,8 @@ class NewPlaceExtraViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! NewPhotoViewController
         destinationVC.place = place
+        
+        //Can't pass data only if alreadySaved is false because might have chosen an existing place(alreadySaved = true), enter some new text but not click save in which case it has to be passed on for when it does get saved.
         destinationVC.placeName = placeName
         destinationVC.mainNotes = mainNotes
         destinationVC.extraNotes = extraNotes.text!

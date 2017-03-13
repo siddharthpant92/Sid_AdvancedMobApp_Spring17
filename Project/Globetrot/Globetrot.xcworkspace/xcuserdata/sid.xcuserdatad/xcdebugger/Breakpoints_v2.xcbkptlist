@@ -265,8 +265,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "87"
             endingLineNumber = "87"
-            landmarkName = "cameraButtonTapped(_:)"
-            landmarkType = "7">
+            landmarkName = "NewPhotoViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -276,12 +276,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Globetrot/NewPhotoViewController.swift"
-            timestampString = "510952732.433598"
+            timestampString = "511072341.220575"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "saveButtonTapped(_:)"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "save(data:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -324,12 +324,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Globetrot/NewPhotoViewController.swift"
-            timestampString = "510952732.433598"
+            timestampString = "511072341.220575"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "deletePhtotoTapped(_:)"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "save(data:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -340,12 +340,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Globetrot/NewPhotoViewController.swift"
-            timestampString = "510952732.433598"
+            timestampString = "511072341.220575"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "deletePhtotoTapped(_:)"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "save(data:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
