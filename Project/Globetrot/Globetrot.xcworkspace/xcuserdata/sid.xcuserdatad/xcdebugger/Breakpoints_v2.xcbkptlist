@@ -119,12 +119,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Globetrot/NewPhotoViewController.swift"
-            timestampString = "510952296.976298"
+            timestampString = "511112123.222034"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "imagePickerControllerDidCancel(_:)"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "saveButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -260,13 +260,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Globetrot/NewPhotoViewController.swift"
-            timestampString = "510952296.976298"
+            timestampString = "511112123.222034"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "NewPhotoViewController"
-            landmarkType = "3">
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -276,11 +276,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Globetrot/NewPhotoViewController.swift"
-            timestampString = "511072341.220575"
+            timestampString = "511112123.222034"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "save(data:)"
             landmarkType = "7">
             <Locations>
@@ -324,11 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Globetrot/NewPhotoViewController.swift"
-            timestampString = "511072341.220575"
+            timestampString = "511112123.222034"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "save(data:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -340,11 +340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Globetrot/NewPhotoViewController.swift"
-            timestampString = "511072341.220575"
+            timestampString = "511112123.222034"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "save(data:)"
             landmarkType = "7">
          </BreakpointContent>

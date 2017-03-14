@@ -103,7 +103,7 @@ class NewPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func saveButtonTapped(_ sender: Any) {
       if (imagePresent == true)
         {
-            let data = UIImageJPEGRepresentation((placeImageView?.image)!, 1)
+            let data = UIImageJPEGRepresentation((placeImageView?.image)!, 0.5)
             let compressedJPEGImage = UIImage(data: data!)
             if(picker.sourceType == .camera)//Saving the photo only if it was taken from the camera. Otherwise it already exists in the library
             {
