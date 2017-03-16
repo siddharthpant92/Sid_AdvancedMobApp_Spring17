@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Winter Park</key>
+	<array>
+		<string>Trestle</string>
+		<string>Outhouse</string>
+	</array>
+	<key>Aspen</key>
+	<array>
+		<string>Highland Bowl</string>
+	</array>
+	<key>Eldora</key>
+	<array>
+		<string>Corona Bowl</string>
+	</array>
+	<key>Steamboat</key>
+	<array>
+		<string>No Name Chute</string>
+	</array>
+</dict>
+</plist>
