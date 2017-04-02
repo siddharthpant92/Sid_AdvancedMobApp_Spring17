@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="lab_5" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSQ-R7-N83">
+                                <rect key="frame" x="16" y="43" width="288" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="Hp5-TF-MFH"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Click below to get the co-ordinates of the international space station!">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7m-aW-rbW">
+                                <rect key="frame" x="82" y="123" width="155" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="155" id="7V4-Mv-ftg"/>
+                                    <constraint firstAttribute="height" constant="30" id="A2M-si-Sew"/>
+                                </constraints>
+                                <state key="normal" title="Get co-ordinates"/>
+                                <connections>
+                                    <action selector="getCoordinatesTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="shJ-AE-ayc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO1-un-gpj">
+                                <rect key="frame" x="16" y="194" width="288" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Fk0-ja-QTr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rV4-aB-4kZ">
+                                <rect key="frame" x="16" y="242" width="288" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="KGe-bx-2lF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fO1-un-gpj" firstAttribute="leading" secondItem="rV4-aB-4kZ" secondAttribute="leading" id="0Gm-lp-juU"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="GSQ-R7-N83" secondAttribute="leading" id="K6W-kO-VBg"/>
+                            <constraint firstItem="n7m-aW-rbW" firstAttribute="centerX" secondItem="GSQ-R7-N83" secondAttribute="centerX" id="Zih-TZ-FV8"/>
+                            <constraint firstItem="fO1-un-gpj" firstAttribute="trailing" secondItem="GSQ-R7-N83" secondAttribute="trailing" id="jKP-MN-SaC"/>
+                            <constraint firstItem="fO1-un-gpj" firstAttribute="top" secondItem="n7m-aW-rbW" secondAttribute="bottom" constant="41" id="k9B-Jw-fmg"/>
+                            <constraint firstItem="fO1-un-gpj" firstAttribute="trailing" secondItem="rV4-aB-4kZ" secondAttribute="trailing" id="lWN-KD-HDK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GSQ-R7-N83" secondAttribute="trailing" id="oJA-AM-l1b"/>
+                            <constraint firstItem="GSQ-R7-N83" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="23" id="poR-oJ-dGM"/>
+                            <constraint firstItem="fO1-un-gpj" firstAttribute="leading" secondItem="GSQ-R7-N83" secondAttribute="leading" id="r75-JZ-QrL"/>
+                            <constraint firstItem="n7m-aW-rbW" firstAttribute="top" secondItem="GSQ-R7-N83" secondAttribute="bottom" constant="32" id="sXP-XP-4WF"/>
+                            <constraint firstItem="rV4-aB-4kZ" firstAttribute="top" secondItem="fO1-un-gpj" secondAttribute="bottom" constant="18" id="vYF-sM-7bi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="latitudeLabel" destination="fO1-un-gpj" id="EnC-Hd-TPw"/>
+                        <outlet property="longitudeLabel" destination="rV4-aB-4kZ" id="ObE-lU-Jvf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135" y="138.38028169014083"/>
+        </scene>
+    </scenes>
+</document>
