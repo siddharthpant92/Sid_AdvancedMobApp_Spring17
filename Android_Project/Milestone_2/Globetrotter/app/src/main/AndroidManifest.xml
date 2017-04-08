@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".NewPlaceActivity" />
         <activity android:name=".NewPlaceExtraActivity" />
-        <activity android:name=".NewPlaceImageActivity"></activity>
+        <activity android:name=".NewPlaceImageActivity" />
+        <activity android:name=".PlacesListView"></activity>
     </application>
 
 </manifest>

@@ -24,8 +24,8 @@
     <EditText
         android:id="@+id/placeName"
         android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="2dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="16dp"
@@ -37,13 +37,13 @@
         app:layout_constraintLeft_toRightOf="@+id/textView"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="26dp"
         android:gravity="center"
         android:text="@string/description"
         android:textSize="14sp"
@@ -64,7 +64,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintBottom_toTopOf="@+id/extraNotes" />
+        app:layout_constraintBottom_toTopOf="@+id/extraNotes"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/extraNotes"
@@ -76,5 +77,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:textAllCaps="false"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:onClick="extraNotesTapped"/>
 </android.support.constraint.ConstraintLayout>
