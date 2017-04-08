@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Globetrotter</string>
+    <string name="where"><b>Where?</b></string>
+    <string name="description"><b>What did you love about it?</b></string>
+    <string name="button">What else did you enjoy?</string>
+    <string name="are_there_more_fun_memories">Are there more fun memories?</string>
+    <string name="what_didn_t_you_like">What didn\'t you like?</string>
+    <string name="let_s_take_a_picture_to_remember">Let\'s take a picture to remember!</string>
+    <string name="newplaceimage">newPlaceImage</string>
+    <string name="camerabutton">cameraButton</string>
+    <string name="librarybutton">libraryButton</string>
+</resources>
