@@ -12,4 +12,5 @@
     <string name="placethumbnailimage">placeThumbnailImage</string>
     <string name="textview">TextView</string>
     <string name="cellarrow">cellArrow</string>
+    <string name="your_image_will_be_displayed_here">Your image will be displayed here</string>
 </resources>

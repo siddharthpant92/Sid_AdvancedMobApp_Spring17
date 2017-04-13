@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 public class NewPlaceImageActivity extends AppCompatActivity {
 
@@ -17,11 +18,11 @@ public class NewPlaceImageActivity extends AppCompatActivity {
 
     public void cameraButtonTapped(View view)
     {
-        Log.d(tag, "camera will open uop");
+        Toast.makeText(NewPlaceImageActivity.this, "Camera button tapped", Toast.LENGTH_SHORT).show();
     }
 
     public void libraryButtonTapped(View view)
     {
-        Log.d(tag, "library will open up");
+        Toast.makeText(NewPlaceImageActivity.this, "Library button tapped", Toast.LENGTH_SHORT).show();
     }
 }
