@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Lab_7</string>
+
+
+    <string-array name="teams">
+        <item>Manchester United</item>
+        <item>Real Madrid</item>
+        <item>Chelsea</item>
+    </string-array>
+    <string-array name="positions">
+        <item>Forwards</item>
+        <item>Midfielders</item>
+        <item>Defenders</item>
+        <item>Goalkeepers</item>
+    </string-array>
+</resources>
