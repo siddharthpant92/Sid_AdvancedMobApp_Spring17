@@ -8,16 +8,30 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class NewPlaceActivity extends AppCompatActivity {
 
     String tag = "NewPlaceAcitvity";
 
+    FirebaseDatabase database  = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference();
+
+    EditText placeName;
+    EditText notes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_place);
+
+        placeName = (EditText) findViewById(R.id.placeName);
+        notes = (EditText) findViewById(R.id.notes);
+
     }
 
     @Override
@@ -36,7 +50,7 @@ public class NewPlaceActivity extends AppCompatActivity {
         switch (itemId)
         {
             case (R.id.settings):
-                Toast.makeText(NewPlaceActivity.this, "Save button tapped", Toast.LENGTH_SHORT).show();
+                saveData();
         }
 
         return super.onOptionsItemSelected(item);
@@ -45,6 +59,18 @@ public class NewPlaceActivity extends AppCompatActivity {
     public void extraNotesTapped(View view)
     {
         Intent intent = new Intent(NewPlaceActivity.this, NewPlaceExtraActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("place", String.valueOf(placeName.getText()));
+        intent.putExtras(bundle);
         startActivity(intent);
     }
+
+    public void saveData()
+    {
+        //Setting root child and first child values
+        DatabaseReference mainChild =  myRef.child(String.valueOf(placeName.getText()));
+        DatabaseReference child1 = mainChild.child("notes");
+        child1.setValue(String.valueOf(notes.getText()));
+    }
+
 }
