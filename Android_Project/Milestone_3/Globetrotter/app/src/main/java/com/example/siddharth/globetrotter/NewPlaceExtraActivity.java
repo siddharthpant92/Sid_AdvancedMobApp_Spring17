@@ -30,7 +30,6 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
     DatabaseReference myRef = database.getReference();
 
     String place;
-
     EditText extraNotes;
 
     @Override
@@ -68,9 +67,9 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
 
     public void newPlaceImageTapped(View view)
     {
-        boolean result = checkPermissionCamera();
+        boolean resultCamera = checkPermissionCamera(); //False the first time user taps as the user still has to grant permission
 
-        if(result)
+        if(resultCamera)  //True only from the seconds time user taps this because user has already given permission
         {
             goToNewPlaceImageActivity();
         }
@@ -98,6 +97,7 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
         {
             if(checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
             {
+                //User is asked for permission the first time
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
                 return false;
             }
@@ -120,7 +120,7 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
             case MY_PERMISSIONS_REQUEST_CAMERA:
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 {
-                    goToNewPlaceImageActivity();
+                    goToNewPlaceImageActivity(); //The first time user grants permission.
                 }
                 else
                 {
