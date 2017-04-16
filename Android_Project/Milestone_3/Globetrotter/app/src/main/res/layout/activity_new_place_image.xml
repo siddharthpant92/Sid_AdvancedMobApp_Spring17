@@ -7,7 +7,7 @@
     tools:context="com.example.siddharth.globetrotter.NewPlaceImageActivity">
 
     <ImageView
-        android:id="@+id/newPlaceImage"
+        android:id="@+id/placeImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="80dp"
@@ -22,6 +22,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <TextView
+        android:id="@+id/loadingLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/your_image_will_be_displayed_here"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/cameraButton"
         android:layout_width="50dp"
@@ -32,10 +42,11 @@
         android:layout_marginRight="20dp"
         android:contentDescription="@string/camerabutton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/newPlaceImage"
-        app:layout_constraintTop_toBottomOf="@+id/newPlaceImage"
+        app:layout_constraintLeft_toLeftOf="@+id/placeImage"
+        app:layout_constraintTop_toBottomOf="@+id/placeImage"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@mipmap/ic_launcher"
+        android:src="@drawable/cameraicon"
+        android:background="@android:color/transparent"
         android:onClick="cameraButtonTapped"/>
 
     <ImageButton
@@ -48,19 +59,11 @@
         android:layout_marginRight="20dp"
         android:contentDescription="@string/librarybutton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="@+id/newPlaceImage"
-        app:layout_constraintTop_toBottomOf="@+id/newPlaceImage"
-        app:srcCompat="@mipmap/ic_launcher"
+        app:layout_constraintRight_toRightOf="@+id/placeImage"
+        app:layout_constraintTop_toBottomOf="@+id/placeImage"
+        android:src="@drawable/libraryicon"
+        android:background="@android:color/transparent"
         app:layout_constraintVertical_bias="1.0"
-        android:onClick="libraryButtonTapped"/>
+        android:onClick="libraryButtonTapped" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/your_image_will_be_displayed_here"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -1,9 +1,12 @@
 package com.example.siddharth.globetrotter;
 
-import android.*;
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,29 +14,48 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.File;
 
 public class NewPlaceImageActivity extends AppCompatActivity {
 
     String tag = "NewPlaceImageActivity";
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference();
+
     private static final int MY_PERMISSIONS_REQUEST_STORAGE = 0;
+    static final Integer PICK_IMAGE = 100;
     boolean resultStorage; //To store result of external storage permission
     int permissionAttempt; //User has 2 attempts to grant permission
 
     String place;
+    String imagePath;
+    ImageView imageView;
+    TextView loadingLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_place_image);
 
+        imageView = (ImageView) findViewById(R.id.placeImage);
+        loadingLabel = (TextView) findViewById(R.id.loadingLabel);
+
+        loadingLabel.setVisibility(View.VISIBLE);
+
         Bundle bundle = getIntent().getExtras();
         place = bundle.getString("place");
 
         permissionAttempt = 1; //First time user is asked for permission
         checkPermissionStorage();
-        Log.d(tag, "onCreate: "+resultStorage);
     }
 
     @Override
@@ -52,7 +74,7 @@ public class NewPlaceImageActivity extends AppCompatActivity {
         switch (itemId)
         {
             case (R.id.settings):
-                Toast.makeText(NewPlaceImageActivity.this, "Save button tapped", Toast.LENGTH_SHORT).show();
+                saveData();
         }
 
         return super.onOptionsItemSelected(item);
@@ -74,7 +96,16 @@ public class NewPlaceImageActivity extends AppCompatActivity {
         if(resultStorage)//Permission has already been granted
         {
             Log.d(tag, "user granted permission, open gallery");
+            openGallery();
         }
+    }
+
+
+    public void saveData()
+    {
+        DatabaseReference mainChild = myRef.child(place);
+        DatabaseReference child3 = mainChild.child("image");
+        child3.setValue(imagePath);
     }
 
     public void checkPermissionStorage()
@@ -114,6 +145,7 @@ public class NewPlaceImageActivity extends AppCompatActivity {
                 if((permissionAttempt == 2) && (resultStorage == true))
                 {
                     Log.d(tag, "open gallery");
+                    openGallery();
                 }
                 else
                 {
@@ -121,5 +153,38 @@ public class NewPlaceImageActivity extends AppCompatActivity {
                 }
                 break;
         }
+    }
+
+    public void openGallery()
+    {
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, PICK_IMAGE );
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if((resultCode == RESULT_OK) && (requestCode == PICK_IMAGE))
+        {
+            Uri imageUri = data.getData();
+            Glide.with(NewPlaceImageActivity.this)
+                    .load(imageUri)
+                    .into(imageView);
+
+            loadingLabel.setVisibility(View.INVISIBLE);
+
+            imagePath = getRealPath(imageUri);
+        }
+    }
+
+    public String getRealPath(Uri uri)
+    {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+
+        return cursor.getString(idx);
     }
 }

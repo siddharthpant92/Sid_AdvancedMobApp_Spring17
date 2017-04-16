@@ -27,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:id="@+id/newPlaceImage"
+        android:id="@+id/placeImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -47,7 +47,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/newPlaceImage"
+        app:layout_constraintBottom_toTopOf="@+id/placeImage"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
