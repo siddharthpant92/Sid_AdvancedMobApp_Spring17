@@ -13,10 +13,15 @@ public class NewPlaceImageActivity extends AppCompatActivity {
 
     String tag = "NewPlaceImageActivity";
 
+    String place;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_place_image);
+
+        Bundle bundle = getIntent().getExtras();
+        place = bundle.getString("place");
     }
 
     @Override
