@@ -116,7 +116,7 @@ public class NewPlaceImageActivity extends AppCompatActivity {
 
         //Saving notes
         notesChild = placeChild.child("notes");
-        notesChild.setValue(place, new DatabaseReference.CompletionListener() {
+        notesChild.setValue(notes, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                 if(databaseError == null)
