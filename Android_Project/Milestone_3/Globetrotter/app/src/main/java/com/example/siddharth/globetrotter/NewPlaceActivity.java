@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -20,6 +21,8 @@ public class NewPlaceActivity extends AppCompatActivity {
 
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
+
+    DatabaseReference placeChild, notesChild;
 
     EditText placeName;
     EditText notes;
@@ -61,6 +64,7 @@ public class NewPlaceActivity extends AppCompatActivity {
         Intent intent = new Intent(NewPlaceActivity.this, NewPlaceExtraActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("place", String.valueOf(placeName.getText()));
+        bundle.putString("notes", String.valueOf(notes.getText()));
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -68,9 +72,18 @@ public class NewPlaceActivity extends AppCompatActivity {
     public void saveData()
     {
         //Setting root child and first child values
-        DatabaseReference mainChild =  myRef.child(String.valueOf(placeName.getText()));
-        DatabaseReference child1 = mainChild.child("notes");
-        child1.setValue(String.valueOf(notes.getText()));
+        placeChild =  myRef.child(String.valueOf(placeName.getText()));
+        notesChild = placeChild.child("notes");
+        notesChild.setValue(String.valueOf(notes.getText()), new DatabaseReference.CompletionListener()
+        {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference)
+            {
+                if(databaseError == null)
+                    Toast.makeText(NewPlaceActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(NewPlaceActivity.this, "Error! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-
 }

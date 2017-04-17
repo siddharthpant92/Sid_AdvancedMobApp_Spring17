@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,12 +33,15 @@ public class NewPlaceImageActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
 
+    DatabaseReference placeChild, notesChild, extraNotesChild, imagePathChild;
+
     private static final int MY_PERMISSIONS_REQUEST_STORAGE = 0;
     static final Integer PICK_IMAGE = 100;
     boolean resultStorage; //To store result of external storage permission
     int permissionAttempt; //User has 2 attempts to grant permission
 
-    String place;
+    String place, notes, extraNotes;
+    boolean notesSaved, extraNotesSaved, imagePathSaved;
     String imagePath;
     ImageView imageView;
     TextView loadingLabel;
@@ -53,6 +58,10 @@ public class NewPlaceImageActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         place = bundle.getString("place");
+        notes = bundle.getString("notes");
+        extraNotes = bundle.getString("extraNotes");
+
+        Log.d(tag, place+" ,  "+notes+" , "+extraNotes);
 
         permissionAttempt = 1; //First time user is asked for permission
         checkPermissionStorage();
@@ -103,9 +112,58 @@ public class NewPlaceImageActivity extends AppCompatActivity {
 
     public void saveData()
     {
-        DatabaseReference mainChild = myRef.child(place);
-        DatabaseReference child3 = mainChild.child("image");
-        child3.setValue(imagePath);
+        placeChild = myRef.child(place);
+
+        //Saving notes
+        notesChild = placeChild.child("notes");
+        notesChild.setValue(place, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if(databaseError == null)
+                    notesSaved = true;
+                else
+                    Toast.makeText(NewPlaceImageActivity.this, "Your notes didn't save! Are you connected to the internet", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Saving extra notes
+        extraNotesChild = placeChild.child("extraNotes");
+        extraNotesChild.setValue(extraNotes, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if(databaseError == null)
+                    extraNotesSaved = true;
+                else
+                    Toast.makeText(NewPlaceImageActivity.this, "Your extra Notes didn't save! Are you connected to the internet", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Saving image Path
+        imagePathChild = placeChild.child("image");
+        imagePathChild.setValue(imagePath, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if(databaseError == null)
+                    imagePathSaved = true;
+                else
+                    Toast.makeText(NewPlaceImageActivity.this, "Your image didn't save! Are you connected to the internet", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                //Displaying successful save toast
+                if((notesSaved == true) && (extraNotesSaved == true) && (imagePathSaved == true))
+                    Toast.makeText(NewPlaceImageActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(NewPlaceImageActivity.this, "Error! Are you connected to the internet", Toast.LENGTH_SHORT).show();
+            }
+        }, 1000);
     }
 
     public void checkPermissionStorage()

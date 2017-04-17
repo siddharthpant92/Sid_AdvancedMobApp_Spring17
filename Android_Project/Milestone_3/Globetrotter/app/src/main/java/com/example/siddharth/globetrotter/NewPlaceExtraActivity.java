@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,8 +31,12 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
 
-    String place;
+    DatabaseReference placeChild, notesChild, extraNotesChild;
+
+    String place, notes;
     EditText extraNotes;
+
+    boolean notesSaved, extraNotesSaved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,9 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         place = bundle.getString("place");
+        notes = bundle.getString("notes");
+
+        Log.d(tag, place+" ,  "+notes);
 
         extraNotes = (EditText) findViewById(R.id.extraNotes);
     }
@@ -80,15 +89,53 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
         Intent intent = new Intent(NewPlaceExtraActivity.this, NewPlaceImageActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("place", place);
+        bundle.putString("notes", notes);
+        bundle.putString("extraNotes", String.valueOf(extraNotes.getText()));
         intent.putExtras(bundle);
         startActivity(intent);
     }
 
     public void saveData()
     {
-        DatabaseReference mainChild = myRef.child(place);
-        DatabaseReference child2 = mainChild.child("extraNotes");
-        child2.setValue(String.valueOf(extraNotes.getText()));
+        placeChild = myRef.child(place);
+
+        //Saving notes
+        notesChild = placeChild.child("notes");
+        notesChild.setValue(notes, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if(databaseError == null)
+                    notesSaved = true;
+                else
+                    Toast.makeText(NewPlaceExtraActivity.this, "Your notes didn't save! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Saving extra notes
+        extraNotesChild = placeChild.child("extraNotes");
+        extraNotesChild.setValue(String.valueOf(extraNotes.getText()), new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if(databaseError == null)
+                    extraNotesSaved = true;
+                else
+                    Toast.makeText(NewPlaceExtraActivity.this, "Your extra notes didn't save! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                //Displaying successful saved toast
+                if((notesSaved == true) && (extraNotesSaved == true))
+                    Toast.makeText(NewPlaceExtraActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(NewPlaceExtraActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+            }
+        }, 1000);
     }
 
     public boolean checkPermissionCamera()
