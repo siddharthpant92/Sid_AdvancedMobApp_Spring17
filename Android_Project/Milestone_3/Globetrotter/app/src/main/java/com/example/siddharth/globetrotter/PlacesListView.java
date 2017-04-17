@@ -8,18 +8,20 @@ import android.widget.ArrayAdapter;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class PlacesListView extends ArrayAdapter<String> {
 
     private Activity context;
     String tag = "PlacesListView";
-    String[] temp = new String[]{};
+    ArrayList<String> places = new ArrayList<String>();
 
     TextView placeName;
 
-    public PlacesListView(Activity context, String[] temp) {
-        super(context, R.layout.activity_places_list_view, temp);
+    public PlacesListView(Activity context, ArrayList<String> places) {
+        super(context, R.layout.activity_places_list_view, places);
         this.context = context;
-        this.temp = temp;
+        this.places = places;
     }
 
     //MARK: CREATING AND DISPLAYING VIEW
@@ -29,7 +31,7 @@ public class PlacesListView extends ArrayAdapter<String> {
         View rowView=inflater.inflate(R.layout.activity_places_list_view, null,true);
 
         placeName = (TextView) rowView.findViewById(R.id.placeName);
-        placeName.setText(temp[position]);
+        placeName.setText(places.get(position));
 
         return rowView;
     };

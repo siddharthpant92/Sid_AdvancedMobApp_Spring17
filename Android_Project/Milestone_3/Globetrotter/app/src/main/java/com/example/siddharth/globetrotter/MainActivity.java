@@ -45,12 +45,15 @@ public class MainActivity extends AppCompatActivity {
         String[] temp = new String[]{"a", "b", "c"};
 
         // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                for (DataSnapshot child : dataSnapshot.getChildren())
+                {
 //                    for (DataSnapshot single : child.getChildren()) {
 //                        Map<String, Object> map = (Map<String, Object>) single.getValue();
 //                        String a = (String) map.get("notes");
@@ -59,9 +62,12 @@ public class MainActivity extends AppCompatActivity {
 //                        Log.d(tag, a);
 //                        Log.d(tag, b);
 //                    }
-                    Log.d(tag, String.valueOf(child.getKey()));
-                    Log.d(tag, String.valueOf(child.getValue()));
+                    places.add(child.getKey());
+                    //Log.d(tag, String.valueOf(child.getValue()));
                 }
+                Log.d(tag, String.valueOf(places));
+                PlacesListView adapter = new PlacesListView(MainActivity.this, places);
+                listView.setAdapter(adapter);
             }
 
             @Override
@@ -71,10 +77,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-        PlacesListView adapter = new PlacesListView(MainActivity.this, temp);
-        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
