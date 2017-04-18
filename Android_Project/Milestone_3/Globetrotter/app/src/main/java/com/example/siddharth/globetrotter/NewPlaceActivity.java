@@ -24,8 +24,10 @@ public class NewPlaceActivity extends AppCompatActivity {
 
     DatabaseReference placeChild, notesChild;
 
-    EditText placeName;
-    EditText notes;
+    EditText placeName, notes;
+
+    String type; //Indicates whether it's a new or existing place;
+    String placeValue, extraNotesValue, imageValue, notesValue; //The original stored values
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +37,25 @@ public class NewPlaceActivity extends AppCompatActivity {
         placeName = (EditText) findViewById(R.id.placeName);
         notes = (EditText) findViewById(R.id.notes);
 
+        Bundle bundle = getIntent().getExtras();
+        Log.d(tag, String.valueOf(bundle));
+        type = bundle.getString("type");
+        if(type.equals("existing"))
+        {
+            placeValue = bundle.getString("placeValue");
+            extraNotesValue = bundle.getString("extraNotesValue");
+            imageValue = bundle.getString("imageValue");
+            notesValue = bundle.getString("notesValue");
+
+            placeName.setText(placeValue);
+            notes.setText(notesValue);
+        }
+
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
 
@@ -47,15 +63,14 @@ public class NewPlaceActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         int itemId = item.getItemId();
         switch (itemId)
         {
-            case (R.id.settings):
+            case (R.id.save):
                 saveData();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -65,6 +80,15 @@ public class NewPlaceActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("place", String.valueOf(placeName.getText()));
         bundle.putString("notes", String.valueOf(notes.getText()));
+
+        if(type.equals("existing")) //if the user selected an existing place, then we have to pass
+        // on the original values
+        {
+            bundle.putString("type", type);
+            bundle.putString("extraNotesValue", extraNotesValue);
+            bundle.putString("imageValue", imageValue);
+        }
+        bundle.putString("type", type);
         intent.putExtras(bundle);
         startActivity(intent);
     }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> places = new ArrayList<String>();
     ArrayList<String> placeChildren = new ArrayList<String>();
 
+    String placeValue, extraNotesValue, imageValue, notesValue; //To get the original stored values
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,28 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listView);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.add_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int itemId = item.getItemId();
+        switch (itemId)
+        {
+            case R.id.addPlace:
+                sendData("new");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public void onStart()
@@ -76,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 placeChild = myRef.child(places.get(position));
+                placeChildren.clear(); //To clear and then repopulate the values.
                 placeChild.addValueEventListener(new ValueEventListener()
                 {
                     @Override
@@ -101,22 +127,34 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run()
                     {
+                        placeValue = places.get(position);
                         //Getting all the values so that we can send it to next activity
-                        String placeValue = places.get(position);
-                        String extraNotesValue = placeChildren.get(0);
-                        String imageValue = placeChildren.get(1);
-                        String notesValue = placeChildren.get(2);
-
-                        Intent intent = new Intent(MainActivity.this, NewPlaceActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("placeValue", placeValue);
-                        bundle.putString("extraNotesValue", extraNotesValue);
-                        bundle.putString("imageValue", imageValue);
-                        bundle.putString("notesValue", notesValue);
-                        startActivity(intent);
+                        extraNotesValue = placeChildren.get(0);
+                        imageValue = placeChildren.get(1);
+                        notesValue = placeChildren.get(2);
+                        sendData("existing");
                     }
                 }, 1000);
             }//End of onItemClick
         });//End of itemClickListener
     } //End of onStart
+
+
+    public void sendData(String type)
+    {
+        Intent intent = new Intent(MainActivity.this, NewPlaceActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("type", type);
+        if(type.equals("existing"))
+        {
+            bundle.putString("placeValue", placeValue);
+            bundle.putString("extraNotesValue", extraNotesValue);
+            bundle.putString("imageValue", imageValue);
+            bundle.putString("notesValue", notesValue);
+
+        }
+        intent.putExtras(bundle);
+        //Log.d(tag, String.valueOf(bundle));
+        startActivity(intent);
+    }
 }

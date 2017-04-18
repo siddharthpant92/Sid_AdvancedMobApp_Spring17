@@ -33,7 +33,8 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
 
     DatabaseReference placeChild, notesChild, extraNotesChild;
 
-    String place, notes;
+    String place, notes; //The values displayed in NewPlaceActivity
+    String type, imageValue, extraNotesValue; //The original stored values
     EditText extraNotes;
 
     boolean notesSaved, extraNotesSaved;
@@ -43,17 +44,24 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_place_extra);
 
+        extraNotes = (EditText) findViewById(R.id.extraNotes);
+
         Bundle bundle = getIntent().getExtras();
         place = bundle.getString("place");
         notes = bundle.getString("notes");
+        type = bundle.getString("type");
+        if(type.equals("existing"))
+        {
+            extraNotesValue = bundle.getString("extraNotesValue");
+            imageValue = bundle.getString("imageValue");
 
-        Log.d(tag, place+" ,  "+notes);
-
-        extraNotes = (EditText) findViewById(R.id.extraNotes);
+            extraNotes.setText(extraNotesValue);
+        }
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
 
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
@@ -62,15 +70,14 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         int itemId = item.getItemId();
         switch (itemId)
         {
-            case (R.id.settings):
+            case (R.id.save):
                 saveData();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -91,6 +98,11 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
         bundle.putString("place", place);
         bundle.putString("notes", notes);
         bundle.putString("extraNotes", String.valueOf(extraNotes.getText()));
+        if(type.equals("existing"))
+        {
+            bundle.putString("imageValue", imageValue);
+        }
+        bundle.putString("type", type);
         intent.putExtras(bundle);
         startActivity(intent);
     }

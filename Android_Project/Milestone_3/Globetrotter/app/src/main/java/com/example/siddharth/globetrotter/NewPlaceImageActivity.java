@@ -40,9 +40,9 @@ public class NewPlaceImageActivity extends AppCompatActivity {
     boolean resultStorage; //To store result of external storage permission
     int permissionAttempt; //User has 2 attempts to grant permission
 
-    String place, notes, extraNotes;
+    String place, notes, extraNotes; //To store the values displayed in previous activites
     boolean notesSaved, extraNotesSaved, imagePathSaved;
-    String imagePath;
+    String imagePath, imageValue, type; //imageValue is the path of the image already stored previously
     ImageView imageView;
     TextView loadingLabel;
 
@@ -60,16 +60,25 @@ public class NewPlaceImageActivity extends AppCompatActivity {
         place = bundle.getString("place");
         notes = bundle.getString("notes");
         extraNotes = bundle.getString("extraNotes");
+        type = bundle.getString("type");
+        if(type.equals("existing"))
+        {
+            imageValue = bundle.getString("imageValue");
 
-        Log.d(tag, place+" ,  "+notes+" , "+extraNotes);
+            Glide.with(NewPlaceImageActivity.this)
+                    .load(imageValue)
+                    .into(imageView);
+
+            loadingLabel.setVisibility(View.INVISIBLE);
+        }
 
         permissionAttempt = 1; //First time user is asked for permission
         checkPermissionStorage();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
 
@@ -77,12 +86,13 @@ public class NewPlaceImageActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
 
         int itemId = item.getItemId();
         switch (itemId)
         {
-            case (R.id.settings):
+            case (R.id.save):
                 saveData();
         }
 
