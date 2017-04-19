@@ -2,6 +2,7 @@ package com.example.siddharth.globetrotter;
 
 import android.*;
 import android.Manifest;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
@@ -43,6 +44,8 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_place_extra);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         extraNotes = (EditText) findViewById(R.id.extraNotes);
 

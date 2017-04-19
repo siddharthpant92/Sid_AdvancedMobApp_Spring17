@@ -22,9 +22,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".NewPlaceActivity" />
-        <activity android:name=".NewPlaceExtraActivity" />
-        <activity android:name=".NewPlaceImageActivity" />
-        <activity android:name=".PlacesListView"></activity>
+
+        <activity android:name=".NewPlaceExtraActivity"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".NewPlaceImageActivity"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".PlacesListView" />
     </application>
 
 </manifest>

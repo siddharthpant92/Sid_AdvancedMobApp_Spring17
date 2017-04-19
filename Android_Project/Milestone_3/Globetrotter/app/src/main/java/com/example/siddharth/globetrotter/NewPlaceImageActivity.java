@@ -1,6 +1,7 @@
 package com.example.siddharth.globetrotter;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -50,6 +51,8 @@ public class NewPlaceImageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_place_image);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         imageView = (ImageView) findViewById(R.id.placeImage);
         loadingLabel = (TextView) findViewById(R.id.loadingLabel);
