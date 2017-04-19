@@ -154,25 +154,25 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
             }
         });
 
-        Toast.makeText(NewPlaceExtraActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(NewPlaceExtraActivity.this, "Saved", Toast.LENGTH_SHORT).show();
 
-//        Handler handler = new Handler();
-//        handler.postDelayed(new Runnable()
-//        {
-//            @Override
-//            public void run()
-//            {
-//                Log.d(tag, "notesChild = "+notesSaved);
-//                Log.d(tag, "extranotesChild = "+extraNotesSaved);
-//                Log.d(tag, "image = "+imagePathSaved);
-//
-//                //Displaying successful saved toast
-//                if((notesSaved == true) && (extraNotesSaved == true) &&(imagePathSaved == true))
-//                    Toast.makeText(NewPlaceExtraActivity.this, "Saved", Toast.LENGTH_SHORT).show();
-//                else
-//                    Toast.makeText(NewPlaceExtraActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-//            }
-//        }, 2000);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Log.d(tag, "notesChild = "+notesSaved);
+                Log.d(tag, "extranotesChild = "+extraNotesSaved);
+                Log.d(tag, "image = "+imagePathSaved);
+
+                //Displaying successful saved toast
+                if((notesSaved == true) && (extraNotesSaved == true) &&(imagePathSaved == true))
+                    Toast.makeText(NewPlaceExtraActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(NewPlaceExtraActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+            }
+        }, 3000);
     }
 
     public boolean checkPermissionCamera()

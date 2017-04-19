@@ -1,10 +1,12 @@
 package com.example.siddharth.globetrotter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     String tag = "MainActivity";
+    PlacesListView adapter;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = (ListView) findViewById(R.id.listView);
+
+        registerForContextMenu(listView);
     }
 
     @Override
@@ -85,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     places.add(child.getKey());
                 }
 
-                PlacesListView adapter = new PlacesListView(MainActivity.this, places);
+                adapter = new PlacesListView(MainActivity.this, places);
                 listView.setAdapter(adapter);
             }
 
@@ -134,10 +139,41 @@ public class MainActivity extends AppCompatActivity {
                         notesValue = placeChildren.get(2);
                         sendData("existing");
                     }
-                }, 1000);
+                }, 2000);
             }//End of onItemClick
         });//End of itemClickListener
     } //End of onStart
+
+
+    //Deleting a place
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo)
+    {
+        super.onCreateContextMenu(menu, view, menuInfo);
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+
+        menu.setHeaderTitle("Are you sure you want to delete "+places.get(info.position)+"?");
+        menu.add(1, 1, 1, "Yes");
+        menu.add(2, 2, 2, "No");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item)
+    {
+        super.onContextItemSelected(item);
+
+        if(item.getItemId() == 1)
+        {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+            myRef.child(places.get(info.position)).removeValue(); //Deleting from the database
+
+            //places.remove(placeDeleted);
+            //adapter.notifyDataSetChanged();
+        }
+        return true;
+    }
 
 
     public void sendData(String type)

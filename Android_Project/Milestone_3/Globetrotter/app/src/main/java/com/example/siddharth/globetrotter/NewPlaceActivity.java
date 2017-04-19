@@ -145,24 +145,24 @@ public class NewPlaceActivity extends AppCompatActivity {
             }
         });
 
-        Toast.makeText(NewPlaceActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(NewPlaceActivity.this, "Saved", Toast.LENGTH_SHORT).show();
 
-//        Handler handler = new Handler();
-//        handler.postDelayed(new Runnable()
-//        {
-//            @Override
-//            public void run()
-//            {
-//                Log.d(tag, "notesChild = "+notesSaved);
-//                Log.d(tag, "extranotesChild = "+extraNotesSaved);
-//                Log.d(tag, "image = "+imagePathSaved);
-//
-//                //Displaying successful save toast
-//                if((notesSaved == true) && (extraNotesSaved == true) && (imagePathSaved == true))
-//                    Toast.makeText(NewPlaceActivity.this, "Saved", Toast.LENGTH_SHORT).show();
-//                else
-//                    Toast.makeText(NewPlaceActivity.this, "Error! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
-//            }
-//        }, 2000);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Log.d(tag, "notesChild = "+notesSaved);
+                Log.d(tag, "extranotesChild = "+extraNotesSaved);
+                Log.d(tag, "image = "+imagePathSaved);
+
+                //Displaying successful save toast
+                if((notesSaved == true) && (extraNotesSaved == true) && (imagePathSaved == true))
+                    Toast.makeText(NewPlaceActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(NewPlaceActivity.this, "Error! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
+            }
+        }, 3000);
     }
 }

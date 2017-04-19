@@ -129,6 +129,11 @@ public class NewPlaceImageActivity extends AppCompatActivity {
 
     public void saveData()
     {
+        if(imageView.getDrawable() == null)
+        {
+            imagePath = "";
+            Toast.makeText(NewPlaceImageActivity.this, "Your information will be saved without any image", Toast.LENGTH_SHORT).show();
+        }
         placeChild = myRef.child(place);
 
         //Saving notes. If already saved, it simply overwrites with the same value.
@@ -163,27 +168,29 @@ public class NewPlaceImageActivity extends AppCompatActivity {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                 if(databaseError == null)
+                {
                     imagePathSaved = true;
+                }
                 else
                     Toast.makeText(NewPlaceImageActivity.this, "Your image didn't save! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
             }
         });
 
-        Toast.makeText(NewPlaceImageActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+       //Toast.makeText(NewPlaceImageActivity.this, "Saved", Toast.LENGTH_SHORT).show();
 
-//        Handler handler = new Handler();
-//        handler.postDelayed(new Runnable()
-//        {
-//            @Override
-//            public void run()
-//            {
-//                //Displaying successful save toast
-//                if((notesSaved == true) && (extraNotesSaved == true) && (imagePathSaved == true))
-//                    Toast.makeText(NewPlaceImageActivity.this, "Saved", Toast.LENGTH_SHORT).show();
-//                else
-//                    Toast.makeText(NewPlaceImageActivity.this, "Error! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
-//            }
-//        }, 2000);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                //Displaying successful save toast
+                if((notesSaved == true) && (extraNotesSaved == true) && (imagePathSaved == true))
+                    Toast.makeText(NewPlaceImageActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(NewPlaceImageActivity.this, "Error! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
+            }
+        }, 3000);
     }
 
     public void checkPermissionStorage()
