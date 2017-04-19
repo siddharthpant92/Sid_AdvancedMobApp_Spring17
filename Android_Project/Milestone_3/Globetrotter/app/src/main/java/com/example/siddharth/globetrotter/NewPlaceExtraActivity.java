@@ -31,13 +31,13 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
 
-    DatabaseReference placeChild, notesChild, extraNotesChild;
+    DatabaseReference placeChild, notesChild, extraNotesChild, imagePathChild;
 
     String place, notes; //The values displayed in NewPlaceActivity
     String type, imageValue, extraNotesValue; //The original stored values
     EditText extraNotes;
 
-    boolean notesSaved, extraNotesSaved;
+    boolean notesSaved, extraNotesSaved, imagePathSaved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,11 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
             imageValue = bundle.getString("imageValue");
 
             extraNotes.setText(extraNotesValue);
+        }
+        else
+        {
+            extraNotesValue = "";
+            imageValue = "";
         }
     }
 
@@ -123,6 +128,7 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
             }
         });
 
+
         //Saving extra notes
         extraNotesChild = placeChild.child("extraNotes");
         extraNotesChild.setValue(String.valueOf(extraNotes.getText()), new DatabaseReference.CompletionListener() {
@@ -135,19 +141,38 @@ public class NewPlaceExtraActivity extends AppCompatActivity {
             }
         });
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable()
-        {
+
+        //Saving image Path
+        imagePathChild = placeChild.child("image");
+        imagePathChild.setValue(imageValue, new DatabaseReference.CompletionListener() {
             @Override
-            public void run()
-            {
-                //Displaying successful saved toast
-                if((notesSaved == true) && (extraNotesSaved == true))
-                    Toast.makeText(NewPlaceExtraActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if(databaseError == null)
+                    imagePathSaved = true;
                 else
-                    Toast.makeText(NewPlaceExtraActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewPlaceExtraActivity.this, "Your image didn't save! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
             }
-        }, 1000);
+        });
+
+        Toast.makeText(NewPlaceExtraActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable()
+//        {
+//            @Override
+//            public void run()
+//            {
+//                Log.d(tag, "notesChild = "+notesSaved);
+//                Log.d(tag, "extranotesChild = "+extraNotesSaved);
+//                Log.d(tag, "image = "+imagePathSaved);
+//
+//                //Displaying successful saved toast
+//                if((notesSaved == true) && (extraNotesSaved == true) &&(imagePathSaved == true))
+//                    Toast.makeText(NewPlaceExtraActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+//                else
+//                    Toast.makeText(NewPlaceExtraActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+//            }
+//        }, 2000);
     }
 
     public boolean checkPermissionCamera()

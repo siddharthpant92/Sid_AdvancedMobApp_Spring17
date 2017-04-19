@@ -66,4 +66,21 @@
         app:layout_constraintVertical_bias="1.0"
         android:onClick="libraryButtonTapped" />
 
+    <ImageButton
+        android:id="@+id/deleteImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/deletebutton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/cameraButton"
+        app:layout_constraintRight_toLeftOf="@+id/libraryButton"
+        app:layout_constraintTop_toBottomOf="@+id/placeImage"
+        app:srcCompat="@drawable/delete"
+        android:background="@android:color/transparent"
+        android:onClick="deleteImageTapped"/>
+
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.siddharth.globetrotter;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,12 +23,14 @@ public class NewPlaceActivity extends AppCompatActivity {
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
 
-    DatabaseReference placeChild, notesChild;
+    DatabaseReference placeChild, notesChild, extraNotesChild, imagePathChild;
 
     EditText placeName, notes;
 
     String type; //Indicates whether it's a new or existing place;
     String placeValue, extraNotesValue, imageValue, notesValue; //The original stored values
+
+    boolean notesSaved, extraNotesSaved, imagePathSaved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,6 @@ public class NewPlaceActivity extends AppCompatActivity {
         notes = (EditText) findViewById(R.id.notes);
 
         Bundle bundle = getIntent().getExtras();
-        Log.d(tag, String.valueOf(bundle));
         type = bundle.getString("type");
         if(type.equals("existing"))
         {
@@ -49,6 +51,12 @@ public class NewPlaceActivity extends AppCompatActivity {
 
             placeName.setText(placeValue);
             notes.setText(notesValue);
+        }
+        else
+        {
+            notesValue = "";
+            extraNotesValue = "";
+            imageValue = "";
         }
 
     }
@@ -97,6 +105,7 @@ public class NewPlaceActivity extends AppCompatActivity {
     {
         //Setting root child and first child values
         placeChild =  myRef.child(String.valueOf(placeName.getText()));
+
         notesChild = placeChild.child("notes");
         notesChild.setValue(String.valueOf(notes.getText()), new DatabaseReference.CompletionListener()
         {
@@ -104,10 +113,56 @@ public class NewPlaceActivity extends AppCompatActivity {
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference)
             {
                 if(databaseError == null)
-                    Toast.makeText(NewPlaceActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                    notesSaved = true;
                 else
-                    Toast.makeText(NewPlaceActivity.this, "Error! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewPlaceActivity.this, "Your notes didn't save! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        //Saving extra notes
+        extraNotesChild = placeChild.child("extraNotes");
+        extraNotesChild.setValue(extraNotesValue, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if(databaseError == null)
+                    extraNotesSaved = true;
+                else
+                    Toast.makeText(NewPlaceActivity.this, "Your notes didn't save! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Saving image Path
+        imagePathChild = placeChild.child("image");
+        imagePathChild.setValue(imageValue, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if(databaseError == null)
+                    imagePathSaved = true;
+                else
+                    Toast.makeText(NewPlaceActivity.this, "Your image didn't save! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Toast.makeText(NewPlaceActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable()
+//        {
+//            @Override
+//            public void run()
+//            {
+//                Log.d(tag, "notesChild = "+notesSaved);
+//                Log.d(tag, "extranotesChild = "+extraNotesSaved);
+//                Log.d(tag, "image = "+imagePathSaved);
+//
+//                //Displaying successful save toast
+//                if((notesSaved == true) && (extraNotesSaved == true) && (imagePathSaved == true))
+//                    Toast.makeText(NewPlaceActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+//                else
+//                    Toast.makeText(NewPlaceActivity.this, "Error! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
+//            }
+//        }, 2000);
     }
 }

@@ -119,12 +119,19 @@ public class NewPlaceImageActivity extends AppCompatActivity {
         }
     }
 
+    public void deleteImageTapped(View view)
+    {
+        imageView.setImageBitmap(null);
+        imagePath = "";
+        saveData();
+    }
+
 
     public void saveData()
     {
         placeChild = myRef.child(place);
 
-        //Saving notes
+        //Saving notes. If already saved, it simply overwrites with the same value.
         notesChild = placeChild.child("notes");
         notesChild.setValue(notes, new DatabaseReference.CompletionListener() {
             @Override
@@ -132,9 +139,10 @@ public class NewPlaceImageActivity extends AppCompatActivity {
                 if(databaseError == null)
                     notesSaved = true;
                 else
-                    Toast.makeText(NewPlaceImageActivity.this, "Your notes didn't save! Are you connected to the internet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewPlaceImageActivity.this, "Your notes didn't save! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
             }
         });
+
 
         //Saving extra notes
         extraNotesChild = placeChild.child("extraNotes");
@@ -144,7 +152,7 @@ public class NewPlaceImageActivity extends AppCompatActivity {
                 if(databaseError == null)
                     extraNotesSaved = true;
                 else
-                    Toast.makeText(NewPlaceImageActivity.this, "Your extra Notes didn't save! Are you connected to the internet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewPlaceImageActivity.this, "Your extra Notes didn't save! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -157,23 +165,25 @@ public class NewPlaceImageActivity extends AppCompatActivity {
                 if(databaseError == null)
                     imagePathSaved = true;
                 else
-                    Toast.makeText(NewPlaceImageActivity.this, "Your image didn't save! Are you connected to the internet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewPlaceImageActivity.this, "Your image didn't save! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
             }
         });
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                //Displaying successful save toast
-                if((notesSaved == true) && (extraNotesSaved == true) && (imagePathSaved == true))
-                    Toast.makeText(NewPlaceImageActivity.this, "Saved", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(NewPlaceImageActivity.this, "Error! Are you connected to the internet", Toast.LENGTH_SHORT).show();
-            }
-        }, 1000);
+        Toast.makeText(NewPlaceImageActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable()
+//        {
+//            @Override
+//            public void run()
+//            {
+//                //Displaying successful save toast
+//                if((notesSaved == true) && (extraNotesSaved == true) && (imagePathSaved == true))
+//                    Toast.makeText(NewPlaceImageActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+//                else
+//                    Toast.makeText(NewPlaceImageActivity.this, "Error! Are you connected to the internet?", Toast.LENGTH_SHORT).show();
+//            }
+//        }, 2000);
     }
 
     public void checkPermissionStorage()
