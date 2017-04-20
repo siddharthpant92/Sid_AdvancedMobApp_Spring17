@@ -124,9 +124,8 @@ public class NewPlaceImageActivity extends AppCompatActivity {
 
     public void deleteImageTapped(View view)
     {
-        imageView.setImageBitmap(null);
+        imageView.setImageDrawable(null);
         imagePath = "";
-        saveData();
     }
 
 
