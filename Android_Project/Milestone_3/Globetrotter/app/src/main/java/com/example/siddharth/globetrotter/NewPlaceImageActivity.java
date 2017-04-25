@@ -81,7 +81,7 @@ public class NewPlaceImageActivity extends AppCompatActivity {
                         .load(imageValue)
                         .into(imageView);
             }
-            else
+            else if(imageValue.length() != 0)
             {
                 Toast.makeText(NewPlaceImageActivity.this, "Oops. Seems like your image doesnt exist on your phone anymore. Did you delete it?", Toast.LENGTH_SHORT).show();
             }
