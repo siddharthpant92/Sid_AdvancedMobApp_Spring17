@@ -1,0 +1,3 @@
+I am simply loading the indoor and outdoor pictures in the image view. Inthe layout.xml file the images show up. But on my device they don't. 
+
+If there were multiple images, they would also be initialised in Activities.java within the constructor. When the listItem in Indoor activity or in the outdoor acitivity, apart from passing the activtiy name the image resource ID would also be passed and loaded. 
